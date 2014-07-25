@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script data-main="js/main" src="../../js/lib/require.js"></script>
+
+    <title>BattleShips</title>
+<style>
+
+.celda {
+	width:20px;
+	height:20px;
+	padding:1px;
+	border:1px solid #000000;
+	background-color: green;
+}
+</style>
+<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("Text", ev.target.id);
+}
+
+function drop(item, ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("Text");
+    ev.target.appendChild(document.getElementById(data));
+    alert(item.id);
+}
+</script>
+
+
+
+
+  </head>
+  </head>
+  <body>
+    <div class="container" ng-view>
+    	 <table>
+    	 	<% for(var i=1; i<=10;i++) { %>
+    	 		<tr>
+    	 			<% for(var j=1; j<=10;j++) { %>
+    	 				<td>
+    	 					<div id="<%= i %><%= j %>" class = "celda" ondrop="drop(this,event)" ondragover="allowDrop(event)"></div>
+    	 				</td>
+    	 			<% } %>
+    	 		</tr>
+    	 	<% } %>
+    	 </table>
+
+    	 <img id="drag1" src="../../2barco.png" draggable="true" ondragstart="drag(event)" width="50" height="21">
+    </div>
+  </body>
+</html>

@@ -24,7 +24,7 @@ app.set 'port', process.env.PORT || '3000'
 app.use express.static path.join __dirname,'../views'
 app.use express.static path.join(__dirname, '../public')
 app.engine '.html', require('ejs').__express
-app.set 'view engine', 'html'
+app.set 'view engine', 'ejs'
 
 app.use express.logger('dev')
 app.use express.bodyParser()
@@ -43,6 +43,7 @@ app.get '/', (request, respons) ->
   respons.render view
 
 require('./routes/people-routes')(app)
+require('./routes/game-routes')(app)
 
 srv = app.listen app.get('port'), ->
   console.log 'Listening on port %d', srv.address().port

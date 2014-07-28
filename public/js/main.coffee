@@ -4,7 +4,6 @@ require.config
     angular: 'lib/angular.min'
     jquery: 'lib/jquery-2.0.3.min'
     bootstrap: 'lib/bootstrap.min'
-    panelInicial: 'lib/panel_inicial'
 
   #Angular libraries
     ngRoute: 'lib/angular-route'
@@ -19,6 +18,7 @@ require.config
 
   #Angular controllers
     exampleController: 'controllers/persons-controller'
+    dragAndDrop: 'controllers/dragAndDrop'
 
   #Angular services
     exampleService: 'services/example-service'
@@ -55,7 +55,6 @@ require [
   'css!bootstrapStyle'
   'css!panelInicialStyle'
   'bootstrap'
-  'panelInicial'
 ], (angular, app) ->
   # Starts manually the Angular application.
   angular.bootstrap document, [app.name]

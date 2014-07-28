@@ -8,6 +8,7 @@ define [
  "directives"
  "services"
  "ngDragDrop"
+ "dragAndDrop"
 ], (angular) ->
   battleShipsApp = angular.module "battleShipsApp", [
     "ngRoute"

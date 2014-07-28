@@ -24,7 +24,7 @@ app.set 'port', process.env.PORT || '3000'
 app.use express.static path.join __dirname,'../views'
 app.use express.static path.join(__dirname, '../public')
 app.engine '.html', require('ejs').__express
-app.set 'view engine', 'ejs'
+app.set 'view engine', 'html'
 
 app.use express.logger('dev')
 app.use express.bodyParser()

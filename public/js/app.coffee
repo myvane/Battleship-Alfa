@@ -22,9 +22,9 @@ define [
     "$routeProvider"
   , ($routeProvider) ->
       $routeProvider.when("/",
-        templateUrl: "main.html"
+        templateUrl: "panel_inicial.html"
       ).otherwise
-        redirectTo: "/main.html"
+        redirectTo: "/panel_inicial.html"
   ]
 
   battleShipsApp

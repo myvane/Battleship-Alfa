@@ -1,0 +1,9 @@
+<table>
+    <tr ng-repeat="row in [1,2,3,4,5,6,7,8,9,10]">  
+        <td ng-repeat="column in [1,2,3,4,5,6,7,8,9,10]">
+            <div id="div-{{ row }}-{{ column }}" class = "celda" ondrop="drop(this,event)" ondragover="allowDrop(event)"></div>
+        </td>       
+    </tr>
+</table>
+
+<img id="drag1" src="../../2barco.png" draggable="true" ondragstart="drag(event)" width="50" height="21">

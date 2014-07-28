@@ -4,6 +4,7 @@ require.config
     angular: 'lib/angular.min'
     jquery: 'lib/jquery-2.0.3.min'
     bootstrap: 'lib/bootstrap.min'
+    panelInicial: 'lib/panel_inicial'
 
   #Angular libraries
     ngRoute: 'lib/angular-route'
@@ -28,6 +29,7 @@ require.config
   #CSS styles
     generalStyle: '../styles/index'
     bootstrapStyle: '../styles/bootstrap.min'
+    panelInicialStyle: '../styles/panel_inicial'
 
   shim:
     angular:
@@ -51,7 +53,9 @@ require [
   'angular'
   'app'
   'css!bootstrapStyle'
+  'css!panelInicialStyle'
   'bootstrap'
+  'panelInicial'
 ], (angular, app) ->
   # Starts manually the Angular application.
   angular.bootstrap document, [app.name]

@@ -43,6 +43,7 @@ app.get '/', (request, respons) ->
   respons.render view
 
 require('./routes/people-routes')(app)
+require('./routes/game-routes')(app)
 
 srv = app.listen app.get('port'), ->
   console.log 'Listening on port %d', srv.address().port

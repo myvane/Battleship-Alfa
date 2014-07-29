@@ -18,6 +18,7 @@ require.config
 
   #Angular controllers
     exampleController: 'controllers/persons-controller'
+    dragAndDrop: 'controllers/dragAndDrop'
 
   #Angular services
     exampleService: 'services/example-service'
@@ -28,6 +29,7 @@ require.config
   #CSS styles
     generalStyle: '../styles/index'
     bootstrapStyle: '../styles/bootstrap.min'
+    panelInicialStyle: '../styles/panel_inicial'
 
   shim:
     angular:
@@ -51,6 +53,7 @@ require [
   'angular'
   'app'
   'css!bootstrapStyle'
+  'css!panelInicialStyle'
   'bootstrap'
 ], (angular, app) ->
   # Starts manually the Angular application.

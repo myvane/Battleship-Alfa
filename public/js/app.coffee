@@ -9,6 +9,7 @@ define [
  "services"
  "ngDragDrop"
  "dragAndDrop"
+ "crearbarcos"
 ], (angular) ->
   battleShipsApp = angular.module "battleShipsApp", [
     "ngRoute"

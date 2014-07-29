@@ -6,16 +6,8 @@
         </td>       
     </tr>
 </table>
-
-<div ondrop="drop(this,event)" ondragover="allowDrop(event)">
-    <img id="drag1a" ng-src="images/barco1.png" draggable="true" ondragstart="drag(event)" width="20" height="20">
-    <img id="drag1b" ng-src="images/barco1.png" draggable="true" ondragstart="drag(event)" width="20" height="20">
-    <img id="drag1c" ng-src="images/barco1.png" draggable="true" ondragstart="drag(event)" width="20" height="20">
-    <img id="drag1d" ng-src="images/barco1.png" draggable="true" ondragstart="drag(event)" width="20" height="20">
-    <img id="drag2a" ng-src="images/barco2.png" draggable="true" ondragstart="drag(event)" width="40" height="20">
-    <img id="drag2b" ng-src="images/barco2.png" draggable="true" ondragstart="drag(event)" width="40" height="20">
-    <img id="drag2c" ng-src="images/barco2.png" draggable="true" ondragstart="drag(event)" width="40" height="20"><br>
-    <img id="drag3a" ng-src="images/barco3.png" draggable="true" ondragstart="drag(event)" width="60" height="20">
-    <img id="drag3b" ng-src="images/barco3.png" draggable="true" ondragstart="drag(event)" width="60" height="20">
-    <img id="drag4a" ng-src="images/barco4.png" draggable="true" ondragstart="drag(event)" width="80" height="20">
+<div ng-controller="crearBarcos">
+  <div ng-repeat="barco in barcos" ondrop="drop(this,event)" ondragover="allowDrop(event)">
+      <img id="{{barco.id}}" ng-src="{{barco.url}}" draggable="true" ondragstart="drag(event)" width="{{barco.width}}" height="{{barco.height}}">
+  </div>  
 </div>

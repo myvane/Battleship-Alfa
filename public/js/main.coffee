@@ -19,6 +19,7 @@ require.config
   #Angular controllers
     exampleController: 'controllers/persons-controller'
     dragAndDrop: 'controllers/dragAndDrop'
+    crearbarcos: 'controllers/barcoController'
 
   #Angular services
     exampleService: 'services/example-service'

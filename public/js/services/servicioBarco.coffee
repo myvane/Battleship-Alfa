@@ -1,7 +1,7 @@
 'use strict'
 
-define ['services','archivoServicioPieza'], (services,servicioPieza) ->
-  services.service 'servicioBarco', () ->
+define ['services','archivoServicioPieza'], (services) ->
+  services.service 'servicioBarco', (servicioPieza) ->
     class Barco
       constructor: (identificador, tamanio, url, ancho, alto, orientacion) ->
         @identificador = identificador
@@ -10,6 +10,9 @@ define ['services','archivoServicioPieza'], (services,servicioPieza) ->
         @ancho = ancho
         @alto = alto
         @orientacion = orientacion
+        @arregloPiezas = []
+        @construirBarco()
+
 
       getIdentificador: ->
         @identificador
@@ -39,11 +42,15 @@ define ['services','archivoServicioPieza'], (services,servicioPieza) ->
           @setAncho(h)
           @setAlto(w)
 
-      @arregloPiezas
-      agregarArregloPieza: ->
-        for tam in @tamanio
-          pieza = new servicioPieza 0, 0, true
-          @arregloPiezas.push(pieza)
+
+      construirBarco: ->
+        for tam in [1..@tamanio]
+          @arregloPiezas.push(new servicioPieza 0, 0, true)
+          #@arregloPiezas.push(1)
 
       getPiezas: ->
         @arregloPiezas
+
+      getPieza: (indice) ->
+        alert(@arregloPiezas.length)
+        @arregloPiezas[indice]

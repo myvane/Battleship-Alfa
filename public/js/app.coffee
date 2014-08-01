@@ -11,6 +11,8 @@ define [
  "ngDragDrop"
  "dragAndDrop"
  "crearbarcos"
+ "archivoServicioTabla"
+ "archivoControladorTabla"
  "archivoControladorBarco"
  "ngResource"
 ], (angular) ->

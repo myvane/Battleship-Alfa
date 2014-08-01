@@ -3,6 +3,7 @@
 define [
  "angular"
  "css!generalStyle"
+ "ngResource"
  "ngRoute"
  "controllers"
  "directives"
@@ -11,6 +12,7 @@ define [
  "dragAndDrop"
  "crearbarcos"
  "archivoControladorPieza"
+ "archivoControladorCelda"
 ], (angular) ->
   battleShipsApp = angular.module "battleShipsApp", [
     "ngRoute"

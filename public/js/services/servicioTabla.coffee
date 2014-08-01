@@ -1,20 +1,20 @@
 'use strict'
 
-define ['services'], (services) ->
-  services.service 'servicioTabla', () ->
+define ['services','archivoServicioCelda'], (services) ->
+  services.service 'servicioTabla', (servicioCelda) ->
     class Tabla
       constructor: (dimension) ->
         @dimension = dimension
-        @celdas = construirTabla(dimension)
+        @celdas = @construirTabla(@dimension)
         @barcos = []
 
       
-      construirTabla:(dimension) ->
+      construirTabla: (dimension) ->
         tabla = new Array(dimension)
         for fila in tabla
           fila = new Array(dimension)
           for celda in fila
-            celda = new celda()
+            celda = new servicioCelda()
         return tabla
 
       agregarBarco: (barco)->

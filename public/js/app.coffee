@@ -3,6 +3,7 @@
 define [
  "angular"
  "css!generalStyle"
+ "ngResource"
  "ngRoute"
  "controllers"
  "directives"
@@ -10,7 +11,6 @@ define [
  "ngDragDrop"
  "dragAndDrop"
  "crearbarcos"
- "archivoServicioBarco"
  "archivoControladorBarco"
  "ngResource"
 ], (angular) ->

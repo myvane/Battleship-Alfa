@@ -16,17 +16,17 @@ require.config
     directives: 'directives/directives'
     services: 'services/services'
 
-  #Angular services
-    exampleService: 'services/example-service'
-    archivoServicioBarco: 'services/servicioBarco'
-
   #Angular controllers
     exampleController: 'controllers/persons-controller'
     dragAndDrop: 'controllers/dragAndDrop'
     crearbarcos: 'controllers/barcoController'
     archivoControladorBarco: 'controllers/controladorBarco'
 
-
+  #Angular services
+    exampleService: 'services/example-service'
+    archivoServicioPieza: 'services/servicioPieza'
+    archivoServicioCelda: 'services/servicioCelda'
+    archivoServicioBarco: 'services/servicioBarco'
 
   #Angular directives
     exampleDirective: 'directives/example-directive'

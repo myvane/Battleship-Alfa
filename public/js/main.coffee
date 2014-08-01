@@ -20,12 +20,12 @@ require.config
     exampleController: 'controllers/persons-controller'
     dragAndDrop: 'controllers/dragAndDrop'
     crearbarcos: 'controllers/barcoController'
-    archivoControladorCelda: 'controllers/controladorCelda'
-
 
   #Angular services
     exampleService: 'services/example-service'
+    archivoServicioPieza: 'services/servicioPieza'
     archivoServicioCelda: 'services/servicioCelda'
+
 
   #Angular directives
     exampleDirective: 'directives/example-directive'

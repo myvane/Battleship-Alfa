@@ -1,7 +1,7 @@
 require.config
   paths:
   # 3rd party libraries
-    angular: 'lib/angular.min'
+    angular: 'lib/angular'
     jquery: 'lib/jquery-2.0.3.min'
     bootstrap: 'lib/bootstrap.min'
 
@@ -20,12 +20,13 @@ require.config
     exampleController: 'controllers/persons-controller'
     dragAndDrop: 'controllers/dragAndDrop'
     crearbarcos: 'controllers/barcoController'
+    archivoControladorBarco: 'controllers/controladorBarco'
 
   #Angular services
     exampleService: 'services/example-service'
     archivoServicioPieza: 'services/servicioPieza'
     archivoServicioCelda: 'services/servicioCelda'
-
+    archivoServicioBarco: 'services/servicioBarco'
 
   #Angular directives
     exampleDirective: 'directives/example-directive'

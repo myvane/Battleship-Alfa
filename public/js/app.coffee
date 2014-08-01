@@ -11,10 +11,11 @@ define [
  "ngDragDrop"
  "dragAndDrop"
  "crearbarcos"
- "archivoControladorPieza"
- "archivoControladorCelda"
+ "archivoControladorBarco"
+ "ngResource"
 ], (angular) ->
   battleShipsApp = angular.module "battleShipsApp", [
+    "ngResource"
     "ngRoute"
     "battleShipsControllers"
     "battleShipsDirectives"

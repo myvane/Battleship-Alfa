@@ -3,6 +3,7 @@
 define [
  "angular"
  "css!generalStyle"
+ "ngResource"
  "ngRoute"
  "controllers"
  "directives"
@@ -12,8 +13,11 @@ define [
  "crearbarcos"
  "archivoServicioTabla"
  "archivoControladorTabla"
+ "archivoControladorBarco"
+ "ngResource"
 ], (angular) ->
   battleShipsApp = angular.module "battleShipsApp", [
+    "ngResource"
     "ngRoute"
     "battleShipsControllers"
     "battleShipsDirectives"

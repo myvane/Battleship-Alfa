@@ -6,8 +6,9 @@
         </td>       
     </tr>
 </table>
-<div ng-controller="crearBarcos">
+<div ng-controller="controladorTabla">
   <div ng-repeat="barco in barcos" ondrop="drop(this,event)" ondragover="allowDrop(event)">
-      <img id="{{barco.id}}" ng-src="{{barco.url}}" draggable="true" ondragstart="drag(event)" width="{{barco.width}}" height="{{barco.height}}">
-  </div>  
+      <button ng-click="cambiarOrientacion(barco)">Rotar</button>
+      <img id="{{barco.identificador}}" ng-src="{{barco.url}}" draggable="true" ondragstart="drag(event)" width="{{barco.ancho}}" height="{{barco.alto}}">
+  </div>
 </div>

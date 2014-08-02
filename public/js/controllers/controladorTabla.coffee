@@ -10,8 +10,7 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla'], (controll
     $scope.barcos = [$scope.barco1,$scope.barco2,$scope.barco3,$scope.barco4,$scope.barco5]
     $scope.cambiarOrientacion = (barco) ->
       barco.setOrientacion(barco.tamanio, barco.ancho, barco.alto)
-    
+
     $scope.tabla = new servicioTabla 10
     #$scope
-    alert $scope.tabla.getDimension()
-    
+    $scope.celdas = [1..$scope.tabla.getDimension()]

@@ -1,14 +1,16 @@
 <h1>BATTLESHIP</h1>
-<table>
-    <tr ng-repeat="row in [1,2,3,4,5,6,7,8,9,10]">  
-        <td ng-repeat="column in [1,2,3,4,5,6,7,8,9,10]">
-            <div id="div-{{ row }}-{{ column }}" class = "celda" ondrop="drop(this,event)" ondragover="allowDrop(event)"></div>
-        </td>       
-    </tr>
-</table>
 <div ng-controller="controladorTabla">
-  <div ng-repeat="barco in barcos" ondrop="drop(this,event)" ondragover="allowDrop(event)">
-      <button ng-click="cambiarOrientacion(barco)">Rotar</button>
-      <img id="{{barco.identificador}}" ng-src="{{barco.url}}" draggable="true" ondragstart="drag(event)" width="{{barco.ancho}}" height="{{barco.alto}}">
-  </div>
-</div>
+    <table>
+        <tr ng-repeat="row in celdas">
+            <td ng-repeat="column in celdas">
+                <div id="div-{{ row }}-{{ column }}" class = "celda" ondrop="drop(this,event)" ondragover="allowDrop(event)"></div>
+            </td>
+        </tr>
+    </table>
+    <div>
+      <div ng-repeat="barco in barcos" ondrop="drop(this,event)" ondragover="allowDrop(event)">
+          <button ng-click="cambiarOrientacion(barco)">Rotar</button>
+          <img id="{{barco.identificador}}" ng-src="{{barco.url}}" draggable="true" ondragstart="drag(event)" width="{{barco.ancho}}" height="{{barco.alto}}">
+      </div>
+    </div>
+<div>

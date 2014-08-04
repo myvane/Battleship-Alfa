@@ -1,13 +1,18 @@
 <h1>BATTLESHIP</h1>
 <div ng-controller="controladorTabla">
+   <div class="div">
     <table>
         <tr ng-repeat="row in celdas">
             <td ng-repeat="column in celdas">
-                <div id="div-{{ row }}-{{ column }}" class = "celda" ondrop="drop(this,event)" ondragover="allowDrop(event)"></div>
+                <div id="div-{{ row }}-{{ column }}" class = "celda" ng-mousedown="cambiarIdDiv(row , column)" ondrop="drop(this,event)" ondragover="allowDrop(event)"></div>
             </td>
         </tr>
     </table>
+   </div>
+   <div>
       <div ng-repeat="barco in barcos" ondrop=drop(this,event) ondragover=allowDrop(event)>
-          <img ng-click="cambiarOrientacion(barco)" id={{barco.identificador}} ng-src={{barco.url}} draggable="true" ondragstart="drag(event)" width="{{barco.ancho}}" height="{{barco.alto}}">
+          <img ng-click="cambiarOrientacion(barco)" ng-mousedown="obtenerTamanioBarco(barco)" id={{barco.identificador}} ng-src={{barco.url}} draggable="true" ondragstart="drag(this,event)" width="{{barco.ancho}}" height="{{barco.alto}}">
       </div>
+   </div>
+    <button ng-hide="setValor()" ng-click="guardarValores()">Jugar</button>
 </div>

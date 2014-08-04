@@ -9,11 +9,9 @@ define [
  "directives"
  "services"
  "ngDragDrop"
- "dragAndDrop"
  "crearbarcos"
  "archivoServicioTabla"
  "archivoControladorTabla"
- "archivoControladorBarco"
  "ngResource"
 ], (angular) ->
   battleShipsApp = angular.module "battleShipsApp", [

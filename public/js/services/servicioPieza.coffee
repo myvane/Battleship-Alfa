@@ -17,7 +17,7 @@ define ['services'], (services) ->
       getColumna: ->
         @columna
 
-      setColumna: (newColumna) ->
+      setColumna: (nuevaColumna) ->
         @columna = nuevaColumna
 
       getEstado: ->

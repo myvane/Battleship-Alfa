@@ -48,6 +48,12 @@ define ['services','archivoServicioPieza'], (services) ->
           @arregloPiezas.push(new servicioPieza 0, 0, true)
           #@arregloPiezas.push(1)
 
+      setPiezas: (arreglos) ->
+        tamArreglo = parseInt(arreglos.length)-1
+        for arreglo in [1..tamArreglo]
+          @arregloPiezas[arreglo].setFila(arreglos[arreglo].fila)
+          @arregloPiezas[arreglo].setColumna(arreglos[arreglo].columna)
+
       getPiezas: ->
         @arregloPiezas
 

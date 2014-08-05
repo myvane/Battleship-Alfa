@@ -45,8 +45,16 @@ define ['services','archivoServicioPieza'], (services) ->
 
       construirBarco: ->
         for tam in [1..@tamanio]
-          @arregloPiezas.push(new servicioPieza 0, 0, true)
+          @arregloPiezas.push(new servicioPieza @identificador, 0, 0, true)
           #@arregloPiezas.push(1)
+
+      setPiezas: (arreglos) ->
+        arr = []
+        arr = arreglos
+        tamArreglo = parseInt(arr.length)-2
+        for arreglo in [0..tamArreglo]
+          @arregloPiezas[arreglo].setFila(arr[arreglo].fila)
+          @arregloPiezas[arreglo].setColumna(arr[arreglo].columna)
 
       getPiezas: ->
         @arregloPiezas

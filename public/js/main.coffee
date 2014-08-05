@@ -8,7 +8,7 @@ require.config
   #Angular libraries
     ngRoute: 'lib/angular-route'
     ngResource: 'lib/angular-resource'
-    ngDragDrop: 'lib/angular-dragdrop.min'
+    ngDragDrop: 'lib/angular-dragdrop'
 
   # Angular modules
     app: 'app'
@@ -18,9 +18,7 @@ require.config
 
   #Angular controllers
     exampleController: 'controllers/persons-controller'
-    dragAndDrop: 'controllers/dragAndDrop'
     crearbarcos: 'controllers/barcoController'
-    archivoControladorBarco: 'controllers/controladorBarco'
     archivoControladorTabla: 'controllers/controladorTabla'
 
  #Angular services
@@ -42,6 +40,8 @@ require.config
     angular:
       deps: ['jquery']
       exports: 'angular'
+    jqueryUI:
+      deps: ['jquery']
     ngRoute:
       deps: ['angular']
     ngResource:

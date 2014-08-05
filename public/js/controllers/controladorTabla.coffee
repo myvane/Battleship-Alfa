@@ -293,10 +293,7 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla'], (controll
       idBarco = barco.identificador
       verticalidad = barco.orientacion
       tamBarco = barco.tamanio
-      for pieza in barco.getPiezas()
-        console.log pieza.fila
-        console.log pieza.columna
-
+      
     $scope.cambiarIdDiv = (fila,columna) ->
       idDiv = "div-#{fila}-#{columna}"
 
@@ -304,10 +301,10 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla'], (controll
     $scope.guardarValores = () ->
       $scope.arregloObjetosBarco = arregloBarcos
       #barco = {idBarco:idbarco ,idCelda: "div-#{fila}-#{columna}", fila: fila, columna: columna}
-      for cont in [1..10]
+      for cont in [0..9]
         arreglo = []
         for barco in $scope.arregloObjetosBarco
-          if barco.idBarco is cont
+          if barco.idBarco is cont+1
             obj = {fila: barco.fila, columna: barco.columna}
             arreglo.push(obj)
         $scope.barcos[cont].setPiezas(arreglo)

@@ -9,7 +9,7 @@
                 <table>
                     <tr ng-repeat="row in celdas">
                         <td ng-repeat="column in celdas">
-                            <div id="div-{{ row }}-{{ column }}" class = "celda" ng-mousedown="cambiarIdDiv(row , column)" ondrop="drop(this,event)" ondragover="allowDrop(event)"></div>
+                            <div id="div-{{ row }}-{{ column }}-jugador" class = "celda" ng-mousedown="cambiarIdDiv(row , column)" ondrop="drop(this,event)" ondragover="allowDrop(event)"></div>
                         </td>
                     </tr>
                 </table>

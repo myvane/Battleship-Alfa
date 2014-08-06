@@ -270,7 +270,7 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDir
     $scope.barco9 = new servicioBarco 9, 3, 'images/barco3H.png', 100, 30, "horizontal"
     $scope.barco10 = new servicioBarco 10, 4, 'images/barco4H.png', 120, 30, "horizontal"
     $scope.barcos = [$scope.barco1,$scope.barco2,$scope.barco3,$scope.barco4,$scope.barco5,$scope.barco6,$scope.barco7,$scope.barco8,$scope.barco9,$scope.barco10]
-    $scope.tablaJugador = new servicioTabla "jugador",10
+    $scope.tablaJugador = new servicioTabla "jugador" , 10
     $scope.celdas = [1..$scope.tablaJugador.getDimension()]
     dimension = $scope.tablaJugador.getDimension()
     $scope.cambiarOrientacion = (barco) ->
@@ -329,7 +329,7 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDir
           alert("Ataque repetido")
         else
           # resultadoAtaque = 'ataque-erroneo'
-          $scope.directivaAtacar(fila+1, columna+1, resultadoAtaque)
+          $scope.directivaAtacar(fila+1, columna+1, resultadoAtaque, "enemigo")
 
 #funciones atacar robot
     $scope.randomInt = (menor , mayor) ->
@@ -363,16 +363,13 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDir
         $scope.filaColumnaInicial = {fila: 0, columna: 0}
         $scope.filaColumnaFinal = {fila: 9, columna: 9}
         $scope.valorPosicion = $scope.devolverPosicionAleatoria($scope.filaColumnaInicial , $scope.filaColumnaFinal)
+        $scope.directivaAtacar($scope.valorPosicion.fila, $scope.valorPosicion.columna, "pieza-atacada", "jugador")
         console.log $scope.valorPosicion
-        $scope.estaLibre = $scope.tablaJugador.getEstadoCelda($scope.valorPosicion.fila, $scope.valorPosicion.columna)
-        console.log $scope.estaLibre
-        if($scope.estaLibre is "libre")
-          $scope.tablaJugador.setEstadoCelda($scope.valorPosicion.fila, $scope.valorPosicion.columna, "atacado")
-          $scope.bandera = false
-          console.log $scope.valorPosicion
+        ###if($scope.estaLibre is "libre")
         else
           console.log "entra else"
           $scope.atacarRobot()
       else
         #este scope se setea en la funcion de atacar jugador
         $scope.bandera = true
+  ###

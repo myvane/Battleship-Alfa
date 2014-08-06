@@ -56,8 +56,8 @@ define ['directives'], (directives) ->
       scope.directivaGetColumnaAtaque = () ->
         columna = document.getElementById("columna").value
 
-      scope.directivaAtacar = (fila, columna, resultadoAtaque) ->
-        celda = document.getElementById("div-#{fila}-#{columna}-enemigo")
+      scope.directivaAtacar = (fila, columna, resultadoAtaque,idJugador) ->
+        celda = document.getElementById("div-#{fila}-#{columna}-#{idJugador}")
         if(resultadoAtaque == "ataque-fallido")
           celda.classList.add('atacado')
         else

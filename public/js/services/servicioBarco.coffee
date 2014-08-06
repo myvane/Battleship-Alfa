@@ -60,5 +60,45 @@ define ['services','archivoServicioPieza'], (services) ->
         @arregloPiezas
 
       getPieza: (indice) ->
-        alert(@arregloPiezas.length)
         @arregloPiezas[indice]
+
+      atacar: (fila, columna) ->
+        resultadoAtaque = "ataque-fallido"
+        indicePieza = @indicePiezaEnPosicion(fila, columna)
+        if(indicePieza >= 0)
+          pieza = @arregloPiezas[indicePieza]
+          pieza.atacar()
+          if(cantidadPiezasVivas == 0)
+            resultadoAtaque = "barco-hundido"
+          else
+            resultadoAtaque = "pieza-atacada"
+        return resultadoAtaque
+
+      indicePiezaEnPosicion: (fila, columna) ->
+        indice = 0;
+        encontrado = false
+        while(indice < @arregloPiezas.length && !encontrado)
+          pieza = @arregloPiezas[indice]
+          if(pieza.getFila() == fila && pieza.getColumna() == columna)
+            encontrado = true
+          else
+            indice++
+        if !encontrado
+          indice = -1
+        return indice
+
+      cantidadPiezasVivas: () ->
+        vivos = 0
+        for pieza in @arregloPiezas
+          if pieza.getEstado() == "vivo"
+            vivos++
+        return vivos
+
+        ###getExistePieza: (fila, columna) ->
+        res = false
+        for i in @arregloPiezas
+          if(i.getFila() is fila && i.getColumna() is columna)
+            res = true
+        return res
+      ###
+

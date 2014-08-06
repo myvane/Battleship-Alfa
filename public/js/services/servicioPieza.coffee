@@ -3,14 +3,10 @@
 define ['services'], (services) ->
   services.service 'servicioPieza', () ->
     class Pieza
-      constructor: (idBarco, fila, columna, estado) ->
-        @idBarco = idBarco
+      constructor: (fila, columna, estado) ->
         @fila = fila
         @columna = columna
         @estado = estado
-
-      getIdBarco: ->
-        @idBarco
 
       getFila: ->
         @fila
@@ -29,3 +25,7 @@ define ['services'], (services) ->
 
       setEstado: (nuevoestado) ->
         @estado = nuevoestado
+
+      atacar: () ->
+        if(@estado == "vivo")
+          @estado = "muerto"

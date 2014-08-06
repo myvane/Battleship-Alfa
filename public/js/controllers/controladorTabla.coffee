@@ -8,6 +8,7 @@ idBarco = 0
 dimension = 0
 idDiv = 0
 habilitadoBotonJuego = true
+habilitarFuncionalidad = true
 
 verificarIdBarcoEstaArreglo = (idB) ->
   res = false
@@ -218,10 +219,11 @@ drag = (item, ev) ->
 drop = (item, ev) ->
   ev.preventDefault()
   idSplite = item.id.split("-")
-  if(verificarCeldasDesabilitadas(item.id))
-    agregarPosicionCeldas(idBarco,item.id,idSplite[1],idSplite[2])
-    data = ev.dataTransfer.getData("Text")
-    ev.target.appendChild(document.getElementById(data));
+  if(habilitarFuncionalidad)
+    if(verificarCeldasDesabilitadas(item.id))
+      agregarPosicionCeldas(idBarco,item.id,idSplite[1],idSplite[2])
+      data = ev.dataTransfer.getData("Text")
+      ev.target.appendChild(document.getElementById(data));
   #console.log "--------------------------------------------" + arregloBarcos.length
 
 
@@ -255,35 +257,34 @@ verificarCeldasAlRotar = (identificadorDiv) ->
   return res
 
 
-define ['controllers', 'archivoServicioBarco','archivoServicioTabla'], (controllers) ->
+define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDirectivaTabla'], (controllers) ->
   controllers.controller 'controladorTabla', ($scope, servicioBarco, servicioTabla) ->
-    $scope.barco1 = new servicioBarco 1, 1, 'images/barco1H.png', 20, 20, "horizontal"
-    $scope.barco2 = new servicioBarco 2, 1, 'images/barco1H.png', 20, 20, "horizontal"
-    $scope.barco3 = new servicioBarco 3, 1, 'images/barco1H.png', 20, 20, "horizontal"
-    $scope.barco4 = new servicioBarco 4, 1, 'images/barco1H.png', 20, 20, "horizontal"
-    $scope.barco5 = new servicioBarco 5, 2, 'images/barco2H.png', 40, 20, "horizontal"
-    $scope.barco6 = new servicioBarco 6, 2, 'images/barco2H.png', 40, 20, "horizontal"
-    $scope.barco7 = new servicioBarco 7, 2, 'images/barco2H.png', 40, 20, "horizontal"
-    $scope.barco8 = new servicioBarco 8, 3, 'images/barco3H.png', 60, 20, "horizontal"
-    $scope.barco9 = new servicioBarco 9, 3, 'images/barco3H.png', 60, 20, "horizontal"
-    $scope.barco10 = new servicioBarco 10, 4, 'images/barco4H.png', 80, 20, "horizontal"
+    $scope.barco1 = new servicioBarco 1, 1, 'images/barco1H.png', 30, 30, "horizontal"
+    $scope.barco2 = new servicioBarco 2, 1, 'images/barco1H.png', 30, 30, "horizontal"
+    $scope.barco3 = new servicioBarco 3, 1, 'images/barco1H.png', 30, 30, "horizontal"
+    $scope.barco4 = new servicioBarco 4, 1, 'images/barco1H.png', 30, 30, "horizontal"
+    $scope.barco5 = new servicioBarco 5, 2, 'images/barco2H.png', 60, 30, "horizontal"
+    $scope.barco6 = new servicioBarco 6, 2, 'images/barco2H.png', 60, 30, "horizontal"
+    $scope.barco7 = new servicioBarco 7, 2, 'images/barco2H.png', 60, 30, "horizontal"
+    $scope.barco8 = new servicioBarco 8, 3, 'images/barco3H.png', 100, 30, "horizontal"
+    $scope.barco9 = new servicioBarco 9, 3, 'images/barco3H.png', 100, 30, "horizontal"
+    $scope.barco10 = new servicioBarco 10, 4, 'images/barco4H.png', 120, 30, "horizontal"
     $scope.barcos = [$scope.barco1,$scope.barco2,$scope.barco3,$scope.barco4,$scope.barco5,$scope.barco6,$scope.barco7,$scope.barco8,$scope.barco9,$scope.barco10]
+    $scope.tablaJugador = new servicioTabla "jugador",10
+    $scope.celdas = [1..$scope.tablaJugador.getDimension()]
+    dimension = $scope.tablaJugador.getDimension()
     $scope.cambiarOrientacion = (barco) ->
-      if(idDiv != 0)
-        if(verificarCeldasAlRotar(idDiv))
-          sp = idDiv.split("-")
+      if(habilitarFuncionalidad)
+        if(idDiv != 0)
+          if(verificarCeldasAlRotar(idDiv))
+            sp = idDiv.split("-")
+            barco.setOrientacion(barco.tamanio, barco.ancho, barco.alto)
+            verticalidad = barco.orientacion
+            #console.log verticalidad
+            agregarPosicionCeldas(barco.identificador, idDiv, sp[1], sp[2])
+        else
           barco.setOrientacion(barco.tamanio, barco.ancho, barco.alto)
           verticalidad = barco.orientacion
-          #console.log verticalidad
-          agregarPosicionCeldas(barco.identificador, idDiv, sp[1], sp[2])
-      else
-        barco.setOrientacion(barco.tamanio, barco.ancho, barco.alto)
-        verticalidad = barco.orientacion
-
-    $scope.tabla = new servicioTabla 10
-    #$scope
-    $scope.celdas = [1..$scope.tabla.getDimension()]
-    dimension = $scope.tabla.getDimension()
 
     $scope.setValor = () ->
       $scope.valor = habilitadoBotonJuego
@@ -293,12 +294,15 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla'], (controll
       idBarco = barco.identificador
       verticalidad = barco.orientacion
       tamBarco = barco.tamanio
-      
+
     $scope.cambiarIdDiv = (fila,columna) ->
       idDiv = "div-#{fila}-#{columna}"
 
     #funcion que llama el ng-click del boton jugar para cambiar los valores en los servicios
     $scope.guardarValores = () ->
+      habilitarFuncionalidad = false
+      for barco in $scope.barcos
+        $scope.tablaJugador.agregarBarco(barco)
       $scope.arregloObjetosBarco = arregloBarcos
       #barco = {idBarco:idbarco ,idCelda: "div-#{fila}-#{columna}", fila: fila, columna: columna}
       for cont in [0..9]
@@ -308,3 +312,67 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla'], (controll
             obj = {fila: barco.fila, columna: barco.columna}
             arreglo.push(obj)
         $scope.barcos[cont].setPiezas(arreglo)
+
+#funciones ataque jugador
+    $scope.tablaEnemigo = new servicioTabla("enemigo",10)
+
+    $scope.atacar = () ->
+      fila = $scope.directivaGetFilaAtaque()
+      columna = $scope.directivaGetColumnaAtaque()
+      fila = parseInt(fila) - 1
+      columna = parseInt(columna) - 1
+      resultadoAtaque = $scope.tablaJugador.atacar(fila, columna)
+      if(resultadoAtaque == "ataque-erroneo")
+        alert("Ataque erroneo")
+      else
+        if(resultadoAtaque == "ataque-repetido")
+          alert("Ataque repetido")
+        else
+          # resultadoAtaque = 'ataque-erroneo'
+          $scope.directivaAtacar(fila+1, columna+1, resultadoAtaque)
+
+#funciones atacar robot
+    $scope.randomInt = (menor , mayor) ->
+      [menor, mayor] = [1 , menor] unless mayor?
+      [menor, mayor] = [mayor , menor] if menor > mayor
+      Math.floor(Math.random() * (mayor - menor + 1) + menor)
+
+    $scope.devolverPosicionAleatoria = (objFCInicial, objFCFinal) ->
+      $scope.numRandomicoFila = $scope.randomInt(objFCInicial.fila, objFCFinal.fila)
+      $scope.numRandomicoColumna = $scope.randomInt(objFCInicial.columna, objFCFinal.columna)
+      $scope.objRes = {fila: $scope.numRandomicoFila, columna: $scope.numRandomicoColumna}
+      return $scope.objRes
+
+    $scope.bandera = true
+
+    ###$scope.verificarSiHayBarco = (objValorPosicion) ->
+      #llamar a directiva para cambiar de color la celda atacada
+      $scope.barco = $scope.tabla.getExistePiezaBarco(objValorPosicion.fila, objValorPosicion.columna)
+      if($scope.barco?)
+        $scope.barco.setPieza()
+        #continuar jugando
+
+
+          #verificar barco
+          #si barco.getPiezasVivas == 0 entonses banderaAtaque = false entonses le toca al otro jugador
+          #si barco.getPiezasVivas != 0 entonses banderaAtaque = true entonses continuarAtacando
+        ###
+
+    $scope.atacarRobot = () ->
+      if($scope.bandera)
+        $scope.filaColumnaInicial = {fila: 0, columna: 0}
+        $scope.filaColumnaFinal = {fila: 9, columna: 9}
+        $scope.valorPosicion = $scope.devolverPosicionAleatoria($scope.filaColumnaInicial , $scope.filaColumnaFinal)
+        console.log $scope.valorPosicion
+        $scope.estaLibre = $scope.tablaJugador.getEstadoCelda($scope.valorPosicion.fila, $scope.valorPosicion.columna)
+        console.log $scope.estaLibre
+        if($scope.estaLibre is "libre")
+          $scope.tablaJugador.setEstadoCelda($scope.valorPosicion.fila, $scope.valorPosicion.columna, "atacado")
+          $scope.bandera = false
+          console.log $scope.valorPosicion
+        else
+          console.log "entra else"
+          $scope.atacarRobot()
+      else
+        #este scope se setea en la funcion de atacar jugador
+        $scope.bandera = true

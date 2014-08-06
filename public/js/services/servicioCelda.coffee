@@ -3,10 +3,8 @@
 define ['services'], (services) ->
   services.service 'servicioCelda', () ->
     class Celda
-    	@ESTADO_CELDA_LIBRE = "Libre"
-    	@ESTADO_CELDA_ATACADO = "Atacado"
 
-    	constructor: (estado = "Libre", idBarco = 0) ->
+      constructor: (estado = "libre", idBarco = 0) ->
         	@estado = estado
         	@idBarco = idBarco
 

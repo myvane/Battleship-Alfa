@@ -9,8 +9,8 @@ define [
  "directives"
  "services"
  "ngDragDrop"
+ "dragAndDrop"
  "crearbarcos"
- "archivoServicioTabla"
  "archivoControladorTabla"
  "ngResource"
 ], (angular) ->

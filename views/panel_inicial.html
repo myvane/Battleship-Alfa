@@ -1,16 +1,55 @@
 <h1>BATTLESHIP</h1>
 <div ng-controller="controladorTabla">
-    <table>
-        <tr ng-repeat="row in celdas">
-            <td ng-repeat="column in celdas">
-                <div id="div-{{ row }}-{{ column }}" class = "celda" ondrop="drop(this,event)" ondragover="allowDrop(event)"></div>
-            </td>
-        </tr>
-    </table>
-    <div>
-      <div ng-repeat="barco in barcos" ondrop="drop(this,event)" ondragover="allowDrop(event)">
-          <button ng-click="cambiarOrientacion(barco)">Rotar</button>
-          <img id="{{barco.identificador}}" ng-src="{{barco.url}}" draggable="true" ondragstart="drag(event)" width="{{barco.ancho}}" height="{{barco.alto}}">
-      </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel-titulo">
+                <h3>Jugador</h3>
+            </div>
+            <div class="div">
+                <table>
+                    <tr ng-repeat="row in celdas">
+                        <td ng-repeat="column in celdas">
+                            <div id="div-{{ row }}-{{ column }}-jugador" class = "celda" ng-mousedown="cambiarIdDiv(row , column)" ondrop="drop(this,event)" ondragover="allowDrop(event)"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <div ng-repeat="barco in barcos" ondrop=drop(this,event) ondragover=allowDrop(event)>
+                    <img ng-click="cambiarOrientacion(barco)" ng-mousedown="obtenerTamanioBarco(barco)" id={{barco.identificador}} ng-src={{barco.url}} draggable="true" ondragstart="drag(this,event)" width="{{barco.ancho}}" height="{{barco.alto}}">
+                </div>
+                <button ng-hide="setValor()" ng-click="guardarValores()">Jugar</button>
+                <button ng-click="atacarRobot()">Atacar</button>
+            </div>
+        </div>
+        <div ng-hide="false" class="col-md-6">
+            <div class="panel-titulo">
+                <h3>Enemigo</h3>
+            </div>
+            <div class="panel-body">
+                <tablajuego id="enemigo"></tablajuego>
+
+                <form class="form-inline">
+                    <span class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">Fila</div>
+                            <input id="fila" class="form-control" type="number" min="1" max="10" value="1">
+                        </div>
+                    </span>
+
+                    <span class="form-group">
+                         <div class="input-group">
+                             <div class="input-group-addon">Columna</div>
+                             <input id="columna" class="form-control" type="number" min="1" max="10" value="1">
+                          </div>
+                    </span>
+                    <span>
+                      <button type="button" class="btn btn-danger btn-sm" ng-click="atacar()">
+                          <span class="glyphicon glyphicon-screenshot"></span> Atacar
+                      </button>
+                    </span>
+                </form>
+            </div>
+        </div>
     </div>
-<div>
+</div>

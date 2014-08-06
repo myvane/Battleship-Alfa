@@ -17,7 +17,7 @@ define ['services'], (services) ->
       getColumna: ->
         @columna
 
-      setColumna: (newColumna) ->
+      setColumna: (nuevaColumna) ->
         @columna = nuevaColumna
 
       getEstado: ->
@@ -25,3 +25,7 @@ define ['services'], (services) ->
 
       setEstado: (nuevoestado) ->
         @estado = nuevoestado
+
+      atacar: () ->
+        if(@estado == "vivo")
+          @estado = "muerto"

@@ -32,6 +32,7 @@ require.config
 
   #Angular directives
     exampleDirective: 'directives/example-directive'
+    archivoDirectivaTabla: 'directives/directivaTabla'
 
   #CSS styles
     generalStyle: '../styles/index'

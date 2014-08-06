@@ -1,5 +1,29 @@
+.header {
+    background-color: #ccc;
+    text-align: center;
+    font-weight: bold;
+}
+
 .celda {
-    width:20px;
-    height:20px;
-    background-color: green;
+    width: 30px;
+    height: 30px;
+    background-color: #428BCA;
+}
+
+.atacado {
+    background-color: #F0AD4E;
+}
+.barco-atacado {
+    background-color: #F0AD4E;
+}
+
+.eliminado {
+    background-color: #D9534F;
+}
+
+.panel-titulo {
+    padding-left: 20px;
+}
+.div {
+    float: left;
 }

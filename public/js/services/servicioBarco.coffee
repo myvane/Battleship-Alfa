@@ -48,14 +48,21 @@ define ['services','archivoServicioPieza'], (services) ->
 
       construirBarco: ->
         for tam in [1..@tamanio]
-          @arregloPiezas.push(new servicioPieza 0, 0, true)
+          @arregloPiezas.push(new servicioPieza @identificador, 0, 0, true)
           #@arregloPiezas.push(1)
+
+      setPiezas: (arreglos) ->
+        arr = []
+        arr = arreglos
+        tamArreglo = parseInt(arr.length)-2
+        for arreglo in [0..tamArreglo]
+          @arregloPiezas[arreglo].setFila(arr[arreglo].fila)
+          @arregloPiezas[arreglo].setColumna(arr[arreglo].columna)
 
       getPiezas: ->
         @arregloPiezas
 
       getPieza: (indice) ->
-        alert(@arregloPiezas.length)
         @arregloPiezas[indice]
 
       getTamanio: ->
@@ -75,4 +82,43 @@ define ['services','archivoServicioPieza'], (services) ->
             pieza[indice].setColumna(c)
             f++
 
+      atacar: (fila, columna) ->
+        resultadoAtaque = "ataque-fallido"
+        indicePieza = @indicePiezaEnPosicion(fila, columna)
+        if(indicePieza >= 0)
+          pieza = @arregloPiezas[indicePieza]
+          pieza.atacar()
+          if(cantidadPiezasVivas == 0)
+            resultadoAtaque = "barco-hundido"
+          else
+            resultadoAtaque = "pieza-atacada"
+        return resultadoAtaque
+
+      indicePiezaEnPosicion: (fila, columna) ->
+        indice = 0;
+        encontrado = false
+        while(indice < @arregloPiezas.length && !encontrado)
+          pieza = @arregloPiezas[indice]
+          if(pieza.getFila() == fila && pieza.getColumna() == columna)
+            encontrado = true
+          else
+            indice++
+        if !encontrado
+          indice = -1
+        return indice
+
+      cantidadPiezasVivas: () ->
+        vivos = 0
+        for pieza in @arregloPiezas
+          if pieza.getEstado() == "vivo"
+            vivos++
+        return vivos
+
+        ###getExistePieza: (fila, columna) ->
+        res = false
+        for i in @arregloPiezas
+          if(i.getFila() is fila && i.getColumna() is columna)
+            res = true
+        return res
+      ###
 

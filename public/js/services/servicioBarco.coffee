@@ -48,16 +48,16 @@ define ['services','archivoServicioPieza'], (services) ->
 
       construirBarco: ->
         for tam in [1..@tamanio]
-          @arregloPiezas.push(new servicioPieza @identificador, 0, 0, true)
-          #@arregloPiezas.push(1)
+          @arregloPiezas.push(new servicioPieza 0, 0, "vivo")
 
       setPiezas: (arreglos) ->
         arr = []
         arr = arreglos
         tamArreglo = parseInt(arr.length)-2
         for arreglo in [0..tamArreglo]
-          @arregloPiezas[arreglo].setFila(arr[arreglo].fila)
-          @arregloPiezas[arreglo].setColumna(arr[arreglo].columna)
+          @arregloPiezas[arreglo].setFila(arr[arreglo].fila-1)
+          @arregloPiezas[arreglo].setColumna(arr[arreglo].columna-1)
+          console.log "piezas" + @arregloPiezas[arreglo].getFila() + "--" + @arregloPiezas[arreglo].getColumna()
 
       getPiezas: ->
         @arregloPiezas
@@ -88,10 +88,11 @@ define ['services','archivoServicioPieza'], (services) ->
         if(indicePieza >= 0)
           pieza = @arregloPiezas[indicePieza]
           pieza.atacar()
-          if(cantidadPiezasVivas == 0)
+          if(@cantidadPiezasVivas() == 0)
             resultadoAtaque = "barco-hundido"
           else
             resultadoAtaque = "pieza-atacada"
+        alert(resultadoAtaque)
         return resultadoAtaque
 
       indicePiezaEnPosicion: (fila, columna) ->

@@ -23,14 +23,6 @@ define ['services','archivoServicioCelda', 'archivoServicioBarco'], (services) -
 
       agregarBarco: (barco) ->
         @barcos.push(barco)
-        @actualizarTabla()
-
-      actualizarTabla: ->
-        for barco in barcos
-          piezas = barco.getPiezas()
-          for pieza in piezas
-            celda = @celdas[pieza.getFila()][pieza.getColumna()]
-            celda.setIdBarco(barco.getId())
 
       setDimension: (dimension)->
         @dimension = dimension
@@ -254,7 +246,7 @@ define ['services','archivoServicioCelda', 'archivoServicioBarco'], (services) -
         return resultadoAtaque
 
       getIndiceBarco: (idBarco) ->
-        indice = -1
+        indice = 0
         encontrado = false
         while indice < @barcos.length && !encontrado
           barco = @barcos[indice]

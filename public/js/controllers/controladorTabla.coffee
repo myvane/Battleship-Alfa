@@ -226,8 +226,6 @@ drop = (item, ev) ->
       agregarPosicionCeldas(idBarco,item.id,idSplite[1],idSplite[2])
       data = ev.dataTransfer.getData("Text")
       ev.target.appendChild(document.getElementById(data));
-  #console.log "--------------------------------------------" + arregloBarcos.length
-
 
 verificarCeldasAlRotar = (identificadorDiv) ->
   res = true
@@ -291,6 +289,7 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDir
     $scope.setValor = () ->
       $scope.valor = habilitadoBotonJuego
 
+    $scope.valorTablero = true
     #---- funcion ng-mousedown
     $scope.obtenerTamanioBarco = (barco) ->
       idBarco = barco.identificador
@@ -303,6 +302,7 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDir
     #funcion que llama el ng-click del boton jugar para cambiar los valores en los servicios
     $scope.guardarValores = () ->
       habilitarFuncionalidad = false
+      $scope.valorTablero = false
       for barco in $scope.barcos
         $scope.tablaJugador.agregarBarco(barco)
       $scope.arregloObjetosBarco = arregloBarcos
@@ -315,7 +315,9 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDir
             arreglo.push(obj)
         $scope.barcos[cont].setPiezas(arreglo)
 
-#funciones ataque jugador
+ #########AGREGAR SETEAR ID BARCOS DE CELDA
+
+#funciones ataque jugador NELSON
     $scope.tablaEnemigo = new servicioTabla("enemigo",10)
 
     $scope.atacar = () ->
@@ -347,31 +349,20 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDir
 
     $scope.bandera = true
 
-    ###$scope.verificarSiHayBarco = (objValorPosicion) ->
-      #llamar a directiva para cambiar de color la celda atacada
-      $scope.barco = $scope.tabla.getExistePiezaBarco(objValorPosicion.fila, objValorPosicion.columna)
-      if($scope.barco?)
-        $scope.barco.setPieza()
-        #continuar jugando
-
-
-          #verificar barco
-          #si barco.getPiezasVivas == 0 entonses banderaAtaque = false entonses le toca al otro jugador
-          #si barco.getPiezasVivas != 0 entonses banderaAtaque = true entonses continuarAtacando
-        ###
-
     $scope.atacarRobot = () ->
       if($scope.bandera)
         $scope.filaColumnaInicial = {fila: 0, columna: 0}
         $scope.filaColumnaFinal = {fila: 9, columna: 9}
         $scope.valorPosicion = $scope.devolverPosicionAleatoria($scope.filaColumnaInicial , $scope.filaColumnaFinal)
-        $scope.directivaAtacar($scope.valorPosicion.fila, $scope.valorPosicion.columna, "pieza-atacada", "jugador")
-        console.log $scope.valorPosicion
-        ###if($scope.estaLibre is "libre")
+        console.log parseInt($scope.valorPosicion.fila)+1 + "---" + parseInt($scope.valorPosicion.columna)+1
+        resultadoAtaque = $scope.tablaEnemigo.atacar($scope.valorPosicion.fila, $scope.valorPosicion.columna)
+        if(resultadoAtaque == "ataque-erroneo")
+          alert("Ataque erroneo")
         else
-          console.log "entra else"
-          $scope.atacarRobot()
-      else
-        #este scope se setea en la funcion de atacar jugador
-        $scope.bandera = true
-  ###
+          if(resultadoAtaque == "ataque-repetido")
+            alert("Ataque repetido")
+            $scope.atacarRobot()
+          else
+            # resultadoAtaque = 'ataque-erroneo'
+            #$scope.directivaAtacar(fila+1, columna+1, resultadoAtaque, "enemigo")
+            $scope.directivaAtacar(parseInt($scope.valorPosicion.fila)+1, parseInt($scope.valorPosicion.columna)+1,resultadoAtaque, "jugador")

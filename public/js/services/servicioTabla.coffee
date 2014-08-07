@@ -265,3 +265,14 @@ define ['services','archivoServicioCelda', 'archivoServicioBarco'], (services) -
         if !encontrado
           indice = -1
         return indice
+
+      mostrarTabla: ->
+        res = "\n"
+        for fila in @celdas
+          for celda in fila
+            if celda.getIdBarco() != 0
+              res += "#{celda.getIdBarco()}"
+            else
+              res += "-"
+          res += "\n"
+        return res

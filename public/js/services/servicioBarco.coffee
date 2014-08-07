@@ -73,13 +73,13 @@ define ['services','archivoServicioPieza'], (services) ->
         c = parseInt(columna)
         if @orientacion = "horizontal"
           for indice in [0..@tamanio-1]
-            pieza[indice].setFila(f)
-            pieza[indice].setColumna(c)
+            @arregloPiezas[indice].setFila(f)
+            @arregloPiezas[indice].setColumna(c)
             c++
         else
           for indice in [0..@tamanio-1]
-            pieza[indice].setFila(f)
-            pieza[indice].setColumna(c)
+            @arregloPiezas[indice].setFila(f)
+            @arregloPiezas[indice].setColumna(c)
             f++
 
       atacar: (fila, columna) ->
@@ -108,7 +108,7 @@ define ['services','archivoServicioPieza'], (services) ->
           indice = -1
         return indice
 
-      cantidadPiezasVivas: () ->
+      cantidadPiezasVivas: ->
         vivos = 0
         for pieza in @arregloPiezas
           if pieza.getEstado() == "vivo"

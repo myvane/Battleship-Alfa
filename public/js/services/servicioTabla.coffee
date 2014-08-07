@@ -12,6 +12,7 @@ define ['services','archivoServicioCelda', 'archivoServicioBarco'], (services) -
 
       construirTablaEnemigo: ->
         @generarMatrizBarcos()
+        @llenarTabla()
 
       construirTabla: (dimension) ->
         tabla = new Array(dimension)
@@ -228,7 +229,7 @@ define ['services','archivoServicioCelda', 'archivoServicioBarco'], (services) -
         resultadoAtaque = "ataque-erroneo"
         if(@filaColumnaValidas(fila, columna))
           celda = @celdas[fila][columna]
-          if(celda.getEstado() == "libre")
+          if(celda.getEstado() == "libre" || celda.getEstado() == "bloqueado")
             resultadoAtaque = "ataque-exitoso"
             nuevoEstadoCelda = "atacado"
             idBarco = celda.getIdBarco()

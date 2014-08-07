@@ -316,17 +316,16 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDir
         $scope.barcos[cont].setPiezas(arreglo)
         $scope.tablaJugador.setIdBarcoCelda(arreglo)
 
- #########AGREGAR SETEAR ID BARCOS DE CELDA
-
-#funciones ataque jugador NELSON
-    $scope.tablaEnemigo = new servicioTabla("enemigo",10)
+#funciones ataque jugador
+    $scope.tablaEnemigo = new servicioTabla "enemigo", 10
+    $scope.tablaEnemigo.construirTablaEnemigo()
 
     $scope.atacar = () ->
       fila = $scope.directivaGetFilaAtaque()
       columna = $scope.directivaGetColumnaAtaque()
       fila = parseInt(fila) - 1
       columna = parseInt(columna) - 1
-      resultadoAtaque = $scope.tablaJugador.atacar(fila, columna)
+      resultadoAtaque = $scope.tablaEnemigo.atacar(fila, columna)
       if(resultadoAtaque == "ataque-erroneo")
         alert("Ataque erroneo")
       else

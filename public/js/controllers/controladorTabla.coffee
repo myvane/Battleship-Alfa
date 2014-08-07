@@ -311,9 +311,10 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDir
         arreglo = []
         for barco in $scope.arregloObjetosBarco
           if barco.idBarco is cont+1
-            obj = {fila: barco.fila, columna: barco.columna}
+            obj = {fila: barco.fila, columna: barco.columna, idBarco: barco.idBarco}
             arreglo.push(obj)
         $scope.barcos[cont].setPiezas(arreglo)
+        $scope.tablaJugador.setIdBarcoCelda(arreglo)
 
  #########AGREGAR SETEAR ID BARCOS DE CELDA
 

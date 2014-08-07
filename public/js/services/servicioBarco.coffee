@@ -57,7 +57,7 @@ define ['services','archivoServicioPieza'], (services) ->
         for arreglo in [0..tamArreglo]
           @arregloPiezas[arreglo].setFila(arr[arreglo].fila-1)
           @arregloPiezas[arreglo].setColumna(arr[arreglo].columna-1)
-          console.log "piezas" + @arregloPiezas[arreglo].getFila() + "--" + @arregloPiezas[arreglo].getColumna()
+          #console.log "piezas" + @arregloPiezas[arreglo].getFila() + "--" + @arregloPiezas[arreglo].getColumna()
 
       getPiezas: ->
         @arregloPiezas

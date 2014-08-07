@@ -36,6 +36,12 @@ define ['services','archivoServicioCelda', 'archivoServicioBarco'], (services) -
         celda = @celdas[fila][columna]
         celda.setEstado(estado)
 
+      setIdBarcoCelda: (arreglo)->
+        for arr in [0..arreglo.length-2]
+          celda = @celdas[arreglo[arr].fila-1][arreglo[arr].columna-1]
+          celda.setIdBarco(arreglo[arr].idBarco)
+          #console.log "el idBarco es " + celda.getIdBarco()
+
       getDimension: ->
         return @dimension
 
@@ -257,11 +263,3 @@ define ['services','archivoServicioCelda', 'archivoServicioBarco'], (services) -
         if !encontrado
           indice = -1
         return indice
-
-        ###getExistePiezaBarco: (fila, columna) ->
-        res = null
-        for i in @barcos
-          if(i.getExistePieza(fila, columna))
-            res = i
-        return res
-      ###

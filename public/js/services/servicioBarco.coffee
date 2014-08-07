@@ -48,7 +48,7 @@ define ['services','archivoServicioPieza'], (services) ->
 
       construirBarco: ->
         for tam in [1..@tamanio]
-          @arregloPiezas.push(new servicioPieza @identificador, 0, 0, true)
+          @arregloPiezas.push(new servicioPieza 0, 0, "vivo")
           #@arregloPiezas.push(1)
 
       setPiezas: (arreglos) ->
@@ -73,13 +73,13 @@ define ['services','archivoServicioPieza'], (services) ->
         c = parseInt(columna)
         if @orientacion = "horizontal"
           for indice in [0..@tamanio-1]
-            pieza[indice].setFila(f)
-            pieza[indice].setColumna(c)
+            @arregloPiezas[indice].setFila(f)
+            @arregloPiezas[indice].setColumna(c)
             c++
         else
           for indice in [0..@tamanio-1]
-            pieza[indice].setFila(f)
-            pieza[indice].setColumna(c)
+            @arregloPiezas[indice].setFila(f)
+            @arregloPiezas[indice].setColumna(c)
             f++
 
       atacar: (fila, columna) ->
@@ -88,7 +88,7 @@ define ['services','archivoServicioPieza'], (services) ->
         if(indicePieza >= 0)
           pieza = @arregloPiezas[indicePieza]
           pieza.atacar()
-          if(cantidadPiezasVivas == 0)
+          if(@cantidadPiezasVivas() == 0)
             resultadoAtaque = "barco-hundido"
           else
             resultadoAtaque = "pieza-atacada"
@@ -107,7 +107,7 @@ define ['services','archivoServicioPieza'], (services) ->
           indice = -1
         return indice
 
-      cantidadPiezasVivas: () ->
+      cantidadPiezasVivas: ->
         vivos = 0
         for pieza in @arregloPiezas
           if pieza.getEstado() == "vivo"

@@ -12,6 +12,7 @@ define ['services','archivoServicioCelda', 'archivoServicioBarco'], (services) -
 
       construirTablaEnemigo: ->
         @generarMatrizBarcos()
+        @llenarTabla()
 
       construirTabla: (dimension) ->
         tabla = new Array(dimension)
@@ -26,7 +27,7 @@ define ['services','archivoServicioCelda', 'archivoServicioBarco'], (services) -
         @actualizarTabla()
 
       actualizarTabla: ->
-        for barco in barcos
+        for barco in @barcos
           piezas = barco.getPiezas()
           for pieza in piezas
             celda = @celdas[pieza.getFila()][pieza.getColumna()]
@@ -230,7 +231,7 @@ define ['services','archivoServicioCelda', 'archivoServicioBarco'], (services) -
         resultadoAtaque = "ataque-erroneo"
         if(@filaColumnaValidas(fila, columna))
           celda = @celdas[fila][columna]
-          if(celda.getEstado() == "libre")
+          if(celda.getEstado() == "libre" || celda.getEstado() == "bloqueado")
             resultadoAtaque = "ataque-exitoso"
             nuevoEstadoCelda = "atacado"
             idBarco = celda.getIdBarco()
@@ -254,7 +255,7 @@ define ['services','archivoServicioCelda', 'archivoServicioBarco'], (services) -
         return resultadoAtaque
 
       getIndiceBarco: (idBarco) ->
-        indice = -1
+        indice = 0
         encontrado = false
         while indice < @barcos.length && !encontrado
           barco = @barcos[indice]

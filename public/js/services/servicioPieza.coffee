@@ -3,7 +3,7 @@
 define ['services'], (services) ->
   services.service 'servicioPieza', () ->
     class Pieza
-      constructor: (fila, columna, estado) ->
+      constructor: (fila, columna, estado="vivo") ->
         @fila = fila
         @columna = columna
         @estado = estado

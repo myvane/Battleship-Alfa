@@ -71,7 +71,7 @@ define ['services','archivoServicioPieza'], (services) ->
       setPosicionPiezas:(fila, columna) ->
         f = parseInt(fila)
         c = parseInt(columna)
-        if @orientacion = "horizontal"
+        if @orientacion == "horizontal"
           for indice in [0..@tamanio-1]
             @arregloPiezas[indice].setFila(f)
             @arregloPiezas[indice].setColumna(c)
@@ -103,7 +103,7 @@ define ['services','archivoServicioPieza'], (services) ->
             encontrado = true
           else
             indice++
-        if !encontrado
+        if encontrado == false
           indice = -1
         return indice
 

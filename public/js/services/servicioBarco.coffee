@@ -92,7 +92,7 @@ define ['services','archivoServicioPieza'], (services) ->
             resultadoAtaque = "barco-hundido"
           else
             resultadoAtaque = "pieza-atacada"
-        alert(resultadoAtaque)
+        console.log resultadoAtaque
         return resultadoAtaque
 
       indicePiezaEnPosicion: (fila, columna) ->

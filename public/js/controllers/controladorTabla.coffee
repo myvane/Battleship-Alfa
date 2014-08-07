@@ -299,6 +299,7 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDir
     $scope.cambiarIdDiv = (fila,columna) ->
       idDiv = "div-#{fila}-#{columna}"
 
+    $scope.arregloPosiciones = []
     #funcion que llama el ng-click del boton jugar para cambiar los valores en los servicios
     $scope.guardarValores = () ->
       habilitarFuncionalidad = false
@@ -315,6 +316,11 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDir
             arreglo.push(obj)
         $scope.barcos[cont].setPiezas(arreglo)
         $scope.tablaJugador.setIdBarcoCelda(arreglo)
+
+      #agregando un arreglo de posiciones
+      for i in [0..$scope.tablaJugador.getDimension()-1]
+        for j in [0..$scope.tablaJugador.getDimension()-1]
+          $scope.arregloPosiciones.push({fila:i, columna:j})
 
 #funciones ataque jugador
     $scope.tablaEnemigo = new servicioTabla "enemigo", 10
@@ -341,23 +347,19 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDir
       [menor, mayor] = [mayor , menor] if menor > mayor
       Math.floor(Math.random() * (mayor - menor + 1) + menor)
 
-    $scope.devolverPosicionAleatoria = (objFCInicial, objFCFinal) ->
-      $scope.numRandomicoFila = $scope.randomInt(objFCInicial.fila, objFCFinal.fila)
-      $scope.numRandomicoColumna = $scope.randomInt(objFCInicial.columna, objFCFinal.columna)
-      $scope.objRes = {fila: $scope.numRandomicoFila, columna: $scope.numRandomicoColumna}
-      return $scope.objRes
-
     $scope.bandera = true
 
+    $scope.filaColumnaInicial = {fila: 0, columna: 0}
+    $scope.filaColumnaFinal = {fila: 9, columna: 9}
     $scope.atacarRobot = () ->
       if($scope.bandera)
-        $scope.filaColumnaInicial = {fila: 0, columna: 0}
-        $scope.filaColumnaFinal = {fila: 9, columna: 9}
-        $scope.valorPosicion = $scope.devolverPosicionAleatoria($scope.filaColumnaInicial , $scope.filaColumnaFinal)
-        console.log parseInt($scope.valorPosicion.fila)+1 + "---" + parseInt($scope.valorPosicion.columna)+1
-        resultadoAtaque = $scope.tablaEnemigo.atacar($scope.valorPosicion.fila, $scope.valorPosicion.columna)
+        indiceAleatorio = $scope.randomInt(0 , $scope.arregloPosiciones.length-1)
+        posicionAleatoria = $scope.arregloPosiciones[indiceAleatorio]
+        #console.log parseInt($scope.valorPosicion.fila)+1 + "---" + parseInt($scope.valorPosicion.columna)+1
+        resultadoAtaque = $scope.tablaJugador.atacar(posicionAleatoria.fila, posicionAleatoria.columna)
         if(resultadoAtaque == "ataque-erroneo")
           alert("Ataque erroneo")
+          #$scope.atacarRobot()
         else
           if(resultadoAtaque == "ataque-repetido")
             alert("Ataque repetido")
@@ -365,4 +367,19 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDir
           else
             # resultadoAtaque = 'ataque-erroneo'
             #$scope.directivaAtacar(fila+1, columna+1, resultadoAtaque, "enemigo")
-            $scope.directivaAtacar(parseInt($scope.valorPosicion.fila)+1, parseInt($scope.valorPosicion.columna)+1,resultadoAtaque, "jugador")
+            $scope.directivaAtacar(parseInt(posicionAleatoria.fila)+1, parseInt(posicionAleatoria.columna)+1,resultadoAtaque, "jugador")
+            if(resultadoAtaque == "pieza-atacada")
+              piezasPosiblesAtacas = [
+                {fila: posicionAleatoria.fila-1 , columna: posicionAleatoria.columna},
+                {fila: posicionAleatoria.fila+1 , columna: posicionAleatoria.columna},
+                {fila: posicionAleatoria.fila , columna: posicionAleatoria.columna-1},
+                {fila: posicionAleatoria.fila , columna: posicionAleatoria.columna+1}
+              ]
+              ##for celdas in piezasPosiblesAtacas
+              while resultadoAtaque == "pieza-atacada"
+                posicion = piezasPosiblesAtacas.pop()
+                if(posicion.fila<$scope.tablaJugador.getDimension() && posicion.fila>=0 && posicion.columna<$scope.tablaJugador.getDimension() && posicion.columna>=0)
+                  resultadoAtaque = $scope.tablaJugador.atacar(posicion.fila, posicion.columna)
+                  $scope.directivaAtacar(parseInt(posicion.fila)+1, parseInt(posicion.columna)+1,resultadoAtaque, "jugador")
+      $scope.arregloPosiciones.splice(indiceAleatorio,1)
+

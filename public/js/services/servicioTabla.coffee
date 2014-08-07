@@ -15,9 +15,9 @@ define ['services','archivoServicioCelda', 'archivoServicioBarco'], (services) -
 
       construirTabla: (dimension) ->
         tabla = new Array(dimension)
-        for fila in [0..dimension-1]
+        for fila in [0..(dimension-1)]
           tabla[fila] = Array(dimension)
-          for columna in [0..dimension-1]
+          for columna in [0..(dimension-1)]
             tabla[fila][columna] = new servicioCelda("libre",0)
         return tabla
 
@@ -178,7 +178,7 @@ define ['services','archivoServicioCelda', 'archivoServicioBarco'], (services) -
         @barcos[3] = new servicioBarco(4, 2, "./images/barco2V.png", 60, 30, "vertical")
         @barcos[4] = new servicioBarco(5, 2, "./images/barco2H.png", 30, 60, "horizontal")
         @barcos[5] = new servicioBarco(6, 2, "./images/barco2V.png", 60, 30, "vertical")
-        @barcos[6] = new servicioBarco(7, 1, "./images/barco1H.png", 30, 30, "horicontal")
+        @barcos[6] = new servicioBarco(7, 1, "./images/barco1H.png", 30, 30, "horizontal")
         @barcos[7] = new servicioBarco(8, 1, "./images/barco1H.png", 30, 30, "horizontal")
         @barcos[8] = new servicioBarco(9, 1, "./images/barco1V.png", 30, 30, "vertical")
         @barcos[9] = new servicioBarco(10, 1, "./images/barco1V.png", 30, 30, "vertical")
@@ -206,19 +206,7 @@ define ['services','archivoServicioCelda', 'archivoServicioBarco'], (services) -
               fila = parseInt(coordenada.charAt(0))
               columna =parseInt(coordenada.charAt(2))
 
-      mostrarTabla: ->
-        res = ""
-        for fila in [0..(@dimension-1)]
-          for columna in [0..(@dimension-1)]
-            if @celdas[fila][columna].getEstado() == servicioCelda.ESTADO_CELDA_BLOQUEADO
-              res += "B"
-            else
-              res += "0"
-          res += "  ->#{fila}"
-
-        return res
-
-     getBarcos: () ->
+      getBarcos: () ->
         @barcos
 
       getIdJugador: ->

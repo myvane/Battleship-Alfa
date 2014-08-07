@@ -4,9 +4,9 @@
         <div class="col-md-6">
             <div class="panel-titulo">
                 <h3>Jugador</h3>
-            </div>
+            </div><br>
             <div class="div">
-                <table>
+                <table class="bordes">
                     <tr ng-repeat="row in celdas">
                         <td ng-repeat="column in celdas">
                             <div id="div-{{ row }}-{{ column }}-jugador" class = "celda" ng-mousedown="cambiarIdDiv(row , column)" ondrop="drop(this,event)" ondragover="allowDrop(event)"></div>
@@ -15,14 +15,13 @@
                 </table>
             </div>
             <div>
-                <div ng-repeat="barco in barcos" ondrop=drop(this,event) ondragover=allowDrop(event)>
+                <div ng-repeat="barco in barcos">
                     <img ng-click="cambiarOrientacion(barco)" ng-mousedown="obtenerTamanioBarco(barco)" id={{barco.identificador}} ng-src={{barco.url}} draggable="true" ondragstart="drag(this,event)" width="{{barco.ancho}}" height="{{barco.alto}}">
                 </div>
-                <button ng-hide="setValor()" ng-click="guardarValores()">Jugar</button>
-                <button ng-click="atacarRobot()">Atacar</button>
+                <button class="btn btn-danger btn-sm" ng-hide="valor === true" ng-click="guardarValores()">Jugar</button>
             </div>
         </div>
-        <div ng-hide="false" class="col-md-6">
+        <div ng-hide="valorTablero === true" class="col-md-6">
             <div class="panel-titulo">
                 <h3>Enemigo</h3>
             </div>

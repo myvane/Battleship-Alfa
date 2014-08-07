@@ -24,14 +24,6 @@ define ['services','archivoServicioCelda', 'archivoServicioBarco'], (services) -
 
       agregarBarco: (barco) ->
         @barcos.push(barco)
-        @actualizarTabla()
-
-      actualizarTabla: ->
-        for barco in @barcos
-          piezas = barco.getPiezas()
-          for pieza in piezas
-            celda = @celdas[pieza.getFila()][pieza.getColumna()]
-            celda.setIdBarco(barco.getId())
 
       setDimension: (dimension)->
         @dimension = dimension
@@ -44,6 +36,12 @@ define ['services','archivoServicioCelda', 'archivoServicioBarco'], (services) -
       setEstadoCelda: (fila, columna, estado)->
         celda = @celdas[fila][columna]
         celda.setEstado(estado)
+
+      setIdBarcoCelda: (arreglo)->
+        for arr in [0..arreglo.length-2]
+          celda = @celdas[arreglo[arr].fila-1][arreglo[arr].columna-1]
+          celda.setIdBarco(arreglo[arr].idBarco)
+          #console.log "el idBarco es " + celda.getIdBarco()
 
       getDimension: ->
         return @dimension
@@ -228,6 +226,7 @@ define ['services','archivoServicioCelda', 'archivoServicioBarco'], (services) -
         return respuesta
 
       atacar: (fila, columna) ->
+        console.log "atacar = " + fila + "---" + columna
         resultadoAtaque = "ataque-erroneo"
         if(@filaColumnaValidas(fila, columna))
           celda = @celdas[fila][columna]
@@ -266,14 +265,6 @@ define ['services','archivoServicioCelda', 'archivoServicioBarco'], (services) -
         if !encontrado
           indice = -1
         return indice
-
-        ###getExistePiezaBarco: (fila, columna) ->
-        res = null
-        for i in @barcos
-          if(i.getExistePieza(fila, columna))
-            res = i
-        return res
-      ###
 
       mostrarTabla: ->
         res = "\n"

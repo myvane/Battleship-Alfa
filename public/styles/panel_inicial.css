@@ -27,3 +27,11 @@
 .div {
     float: left;
 }
+.bordes {
+    border-style: solid;
+    border-top-width: 19px;
+    border-top-color: #ccc;
+    border-left-width: 11px;
+    border-left-color: #ccc;
+    border-right-color: #ccc;
+}

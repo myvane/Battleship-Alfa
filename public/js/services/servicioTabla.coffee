@@ -226,7 +226,7 @@ define ['services','archivoServicioCelda', 'archivoServicioBarco'], (services) -
         return respuesta
 
       atacar: (fila, columna) ->
-        console.log fila + "---" + columna
+        console.log "atacar = " + fila + "---" + columna
         resultadoAtaque = "ataque-erroneo"
         if(@filaColumnaValidas(fila, columna))
           celda = @celdas[fila][columna]

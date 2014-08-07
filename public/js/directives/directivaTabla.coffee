@@ -61,8 +61,8 @@ define ['directives'], (directives) ->
         if(resultadoAtaque == "ataque-fallido")
           celda.classList.add('atacado')
         else
-          # resultadoAtaque = 'ataque-exitoso'
-          celda.classList.add('barco-atacado')
+          if(resultadoAtaque == 'pieza-atacada' || resultadoAtaque == 'barco-hundido')
+            celda.classList.add('barco-atacado')
 
       idTabla = attrs.id
       objetoTabla = scope.tablaJugador

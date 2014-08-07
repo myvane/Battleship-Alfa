@@ -63,6 +63,8 @@ verificarCantidadBarcosTablero = () ->
 agregarPosicionCeldas = (idbarco, idCelda, fila, columna) ->
   eliminarPosBarco(idbarco)
   eliminarBarcos(idbarco)
+  sp = idCelda.split('-')
+  idCelda = "div-#{sp[1]}-#{sp[2]}"
   if(verticalidad is "vertical")
     #console.log "entra vertical de agregar"
     #--------------cabeza-------------------------------
@@ -270,7 +272,7 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDir
     $scope.barco9 = new servicioBarco 9, 3, 'images/barco3H.png', 100, 30, "horizontal"
     $scope.barco10 = new servicioBarco 10, 4, 'images/barco4H.png', 120, 30, "horizontal"
     $scope.barcos = [$scope.barco1,$scope.barco2,$scope.barco3,$scope.barco4,$scope.barco5,$scope.barco6,$scope.barco7,$scope.barco8,$scope.barco9,$scope.barco10]
-    $scope.tablaJugador = new servicioTabla "jugador" , 10
+    $scope.tablaJugador = new servicioTabla "jugador", 10
     $scope.celdas = [1..$scope.tablaJugador.getDimension()]
     dimension = $scope.tablaJugador.getDimension()
     $scope.cambiarOrientacion = (barco) ->

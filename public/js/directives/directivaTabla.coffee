@@ -7,7 +7,7 @@ define ['directives'], (directives) ->
 
       # Devuelve codigo html que contiene la cebecera de la tabla para la
       # vista.
-      # 
+      #
       # @param [Integer] cantidadColumnas es la cantidad de conlumnas que
       #   tiene la tabla
       # @return [Object] objeto DOM con el thead de una tabla html
@@ -102,7 +102,8 @@ define ['directives'], (directives) ->
         if(resultadoAtaque == 'ataque-fallido')
           celda.classList.add('atacado')
         else
-          if(resultadoAtaque == 'pieza-atacada' || resultadoAtaque == 'barco-hundido')
+          if(resultadoAtaque == 'pieza-atacada' ||
+              resultadoAtaque == 'barco-hundido')
             celda.classList.add('barco-atacado')
 
       idTabla = attrs.id

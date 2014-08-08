@@ -115,6 +115,12 @@ define ['services','archivoServicioPieza'], (services) ->
             vivos++
         return vivos
 
+      estadoBarco: ->
+        estado = "vivo"
+        if(@cantidadPiezasVivas() == 0)
+          estado = "muerto"
+        return estado
+
         ###getExistePieza: (fila, columna) ->
         res = false
         for i in @arregloPiezas

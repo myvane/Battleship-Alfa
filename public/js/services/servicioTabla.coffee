@@ -276,3 +276,10 @@ define ['services','archivoServicioCelda', 'archivoServicioBarco'], (services) -
               res += "-"
           res += "\n"
         return res
+
+      totalBarcosVivos: ->
+        total = 0
+        for barco in @barcos
+          if barco.estadoBarco() == "vivo"
+            total++
+        return total

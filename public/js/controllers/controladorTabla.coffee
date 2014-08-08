@@ -85,34 +85,63 @@ agregarPosicionCeldas = (idBarco2, idCelda, fila, columna) ->
   if(verticalidad is 'vertical')
     #--------cabeza-------------
     #agrego pocicion inicial
-    obj = {idBarco:idBarco2 ,idCelda: idCelda, fila: fila, columna: columna}
+    obj = {
+      idBarco:idBarco2
+      idCelda: idCelda
+      fila: fila
+      columna: columna
+    }
     arregloCeldasDesahabilitadas.push(obj)
     arregloBarcos.push(obj)
 
     #desabilita lado izquierdo de esa celda
     columnaIzquierda = parseInt(columna)-1
-    obj = {idBarco:idBarco2 ,idCelda: "div-#{fila}-#{columnaIzquierda}", fila: fila, columna: columnaIzquierda}
+    obj = {
+      idBarco:idBarco2
+      idCelda: "div-#{fila}-#{columnaIzquierda}"
+      fila: fila
+      columna: columnaIzquierda
+    }
     arregloCeldasDesahabilitadas.push(obj)
 
     #desabilita lado derecho de esa celda
     columnaDerecha = parseInt(columna)+1
-    obj = {idBarco:idBarco2 ,idCelda: "div-#{fila}-#{columnaDerecha}", fila: fila, columna: columnaDerecha}
+    obj = {
+      idBarco:idBarco2
+      idCelda: "div-#{fila}-#{columnaDerecha}"
+      fila: fila
+      columna: columnaDerecha
+    }
     arregloCeldasDesahabilitadas.push(obj)
 
     #---------fila -1 ---------------
     #desabilito columna -1 de pos inicial
     filaMenos1 = parseInt(fila)-1
-    obj = {idBarco:idBarco2 ,idCelda: "div-#{filaMenos1}-#{columna}", fila: filaMenos1, columna: columna}
+    obj = {
+      idBarco:idBarco2
+      idCelda: "div-#{filaMenos1}-#{columna}"
+      fila: filaMenos1
+      columna: columna
+    }
     arregloCeldasDesahabilitadas.push(obj)
 
     #desabilita lado izquierdo de esa celda
     columnaIzquierda = parseInt(columna)-1
-    obj = {idBarco:idBarco2 ,idCelda: "div-#{filaMenos1}-#{columnaIzquierda}", fila: filaMenos1, columna: columnaIzquierda}
+    obj = {
+      idBarco:idBarco2
+      idCelda: "div-#{filaMenos1}-#{columnaIzquierda}"
+      fila: filaMenos1
+      columna: columnaIzquierda
+    }
     arregloCeldasDesahabilitadas.push(obj)
 
     #desabilita lado derecho de esa celda
     columnaDerecha = parseInt(columna)+1
-    obj = {idBarco:idBarco2 ,idCelda: "div-#{filaMenos1}-#{columnaDerecha}", fila: filaMenos1, columna: columnaDerecha}
+    obj = {
+      idBarco:idBarco2
+      idCelda: "div-#{filaMenos1}-#{columnaDerecha}"
+      fila: filaMenos1
+      columna: columnaDerecha}
     arregloCeldasDesahabilitadas.push(obj)
 
     #-------for para desabilitar columna +1 ---------
@@ -120,50 +149,94 @@ agregarPosicionCeldas = (idBarco2, idCelda, fila, columna) ->
       fila = parseInt(fila)+1
       #desabilita lado izquierdo de esa celda
       columnaIzquierda = parseInt(columna)-1
-      obj = {idBarco:idBarco2 ,idCelda: "div-#{fila}-#{columnaIzquierda}", fila: fila, columna: columnaIzquierda}
+      obj = {
+        idBarco:idBarco2
+        idCelda: "div-#{fila}-#{columnaIzquierda}"
+        fila: fila
+        columna: columnaIzquierda
+      }
       arregloCeldasDesahabilitadas.push(obj)
 
       #desabilita lado derecho de esa celda
       columnaDerecha = parseInt(columna)+1
-      obj = {idBarco:idBarco2 ,idCelda: "div-#{fila}-#{columnaDerecha}", fila: fila, columna: columnaDerecha}
+      obj = {
+        idBarco:idBarco2
+        idCelda: "div-#{fila}-#{columnaDerecha}"
+        fila: fila
+        columna: columnaDerecha}
       arregloCeldasDesahabilitadas.push(obj)
 
       #desabilita celda central
-      obj = {idBarco:idBarco2 ,idCelda: "div-#{fila}-#{columna}", fila: fila, columna: columna}
+      obj = {
+        idBarco:idBarco2
+        idCelda: "div-#{fila}-#{columna}"
+        fila: fila
+        columna: columna
+      }
       arregloCeldasDesahabilitadas.push(obj)
       arregloBarcos.push(obj)
 
   else if(verticalidad is 'horizontal')
     #-------------cabeza-----------------
     #agrego pocicion inicial
-    obj = {idBarco:idBarco2 ,idCelda: idCelda, fila: fila, columna: columna}
+    obj = {
+      idBarco:idBarco2
+      idCelda: idCelda
+      fila: fila
+      columna: columna
+    }
     arregloCeldasDesahabilitadas.push(obj)
     arregloBarcos.push(obj)
 
     #desabilita una celda arriba de esa celda
     filaArriba = parseInt(fila)-1
-    obj = {idBarco:idBarco2 ,idCelda: "div-#{filaArriba}-#{columna}", fila: filaArriba, columna: columna}
+    obj = {
+      idBarco:idBarco2
+      idCelda: "div-#{filaArriba}-#{columna}"
+      fila: filaArriba
+      columna: columna
+    }
     arregloCeldasDesahabilitadas.push(obj)
 
     #desabilita una celda abajo de esa celda
     filaAbajo = parseInt(fila)+1
-    obj = {idBarco:idBarco2 ,idCelda: "div-#{filaAbajo}-#{columna}", fila: filaAbajo, columna: columna}
+    obj = {
+      idBarco:idBarco2
+      idCelda: "div-#{filaAbajo}-#{columna}"
+      fila: filaAbajo
+      columna: columna
+    }
     arregloCeldasDesahabilitadas.push(obj)
 
     #------------- columna -1 --------------
     #agrego pocicion inicial
     columnaMenos1 = parseInt(columna)-1
-    obj = {idBarco:idBarco2 ,idCelda: "div-#{fila}-#{columnaMenos1}", fila: fila, columna: columnaMenos1}
+    obj = {
+      idBarco:idBarco2
+      idCelda: "div-#{fila}-#{columnaMenos1}"
+      fila: fila
+      columna: columnaMenos1
+    }
     arregloCeldasDesahabilitadas.push(obj)
 
     #desabilita una celda arriba de esa celda
     filaArriba = parseInt(fila)-1
-    obj = {idBarco:idBarco2 ,idCelda: "div-#{filaArriba}-#{columnaMenos1}", fila: filaArriba, columna: columnaMenos1}
+    obj = {
+      idBarco:idBarco2
+      idCelda: "div-#{filaArriba}-#{columnaMenos1}"
+      fila: filaArriba
+      columna: columnaMenos1
+    }
     arregloCeldasDesahabilitadas.push(obj)
 
     #desabilita una celda abajo de esa celda
     filaAbajo = parseInt(fila)+1
-    obj = {idBarco:idBarco2 ,idCelda: "div-#{filaAbajo}-#{columnaMenos1}", fila: filaAbajo, columna: columnaMenos1}
+    obj = {
+      idBarco:idBarco2
+      idCelda: "div-#{filaAbajo}-#{columnaMenos1}"
+      fila: filaAbajo
+      columna: columnaMenos1
+    }
     arregloCeldasDesahabilitadas.push(obj)
 
     #----- for para desabilitar columna +1 ------------
@@ -171,16 +244,31 @@ agregarPosicionCeldas = (idBarco2, idCelda, fila, columna) ->
       columna = parseInt(columna)+1
       #desabilita una celda arriba de esa celda
       filaArriba = parseInt(fila)-1
-      obj = {idBarco:idBarco2 ,idCelda: "div-#{filaArriba}-#{columna}", fila: filaArriba, columna: columna}
+      obj = {
+        idBarco:idBarco2
+        idCelda: "div-#{filaArriba}-#{columna}"
+        fila: filaArriba
+        columna: columna
+      }
       arregloCeldasDesahabilitadas.push(obj)
 
       #desabilita una celda abajo de esa celda
       filaAbajo = parseInt(fila)+1
-      obj = {idBarco:idBarco2 ,idCelda: "div-#{filaAbajo}-#{columna}", fila: filaAbajo, columna: columna}
+      obj = {
+        idBarco:idBarco2
+        idCelda: "div-#{filaAbajo}-#{columna}"
+        fila: filaAbajo
+        columna: columna
+      }
       arregloCeldasDesahabilitadas.push(obj)
 
       #desabilita la celda central
-      obj = {idBarco:idBarco2 ,idCelda: "div-#{fila}-#{columna}", fila: fila, columna: columna}
+      obj = {
+        idBarco:idBarco2
+        idCelda: "div-#{fila}-#{columna}"
+        fila: fila
+        columna: columna
+      }
       arregloCeldasDesahabilitadas.push(obj)
       arregloBarcos.push(obj)
   verificarCantidadBarcosTablero()
@@ -266,19 +354,31 @@ verificarCeldasAlRotar = (identificadorDiv) ->
         res = false
   return res
 
-define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDirectivaTabla'], (controllers) ->
-  controllers.controller 'controladorTabla', ($scope, servicioBarco, servicioTabla) ->
+define ['controllers', 'archivoServicioBarco','archivoServicioTabla',
+          'archivoDirectivaTabla'], (controllers) ->
+  controllers.controller 'controladorTabla', ($scope,
+    servicioBarco, servicioTabla) ->
     #Creando los objetos barco para el Tablero Jugador
-    $scope.barco1 = new servicioBarco 1, 1, 'images/barco1H.png', 30, 30, 'horizontal'
-    $scope.barco2 = new servicioBarco 2, 1, 'images/barco1H.png', 30, 30, 'horizontal'
-    $scope.barco3 = new servicioBarco 3, 1, 'images/barco1H.png', 30, 30, 'horizontal'
-    $scope.barco4 = new servicioBarco 4, 1, 'images/barco1H.png', 30, 30, 'horizontal'
-    $scope.barco5 = new servicioBarco 5, 2, 'images/barco2H.png', 60, 30, 'horizontal'
-    $scope.barco6 = new servicioBarco 6, 2, 'images/barco2H.png', 60, 30, 'horizontal'
-    $scope.barco7 = new servicioBarco 7, 2, 'images/barco2H.png', 60, 30, 'horizontal'
-    $scope.barco8 = new servicioBarco 8, 3, 'images/barco3H.png', 100, 30, 'horizontal'
-    $scope.barco9 = new servicioBarco 9, 3, 'images/barco3H.png', 100, 30, 'horizontal'
-    $scope.barco10 = new servicioBarco 10, 4, 'images/barco4H.png', 120, 30, 'horizontal'
+    $scope.barco1 = new servicioBarco(1, 1, 'images/barco1H.png',
+      30, 30, 'horizontal')
+    $scope.barco2 = new servicioBarco(2, 1, 'images/barco1H.png',
+      30, 30, 'horizontal')
+    $scope.barco3 = new servicioBarco(3, 1, 'images/barco1H.png',
+      30, 30, 'horizontal')
+    $scope.barco4 = new servicioBarco(4, 1, 'images/barco1H.png',
+      30, 30, 'horizontal')
+    $scope.barco5 = new servicioBarco(5, 2, 'images/barco2H.png',
+      60, 30, 'horizontal')
+    $scope.barco6 = new servicioBarco(6, 2, 'images/barco2H.png',
+      60, 30, 'horizontal')
+    $scope.barco7 = new servicioBarco(7, 2, 'images/barco2H.png',
+      60, 30, 'horizontal')
+    $scope.barco8 = new servicioBarco(8, 3, 'images/barco3H.png',
+      100, 30, 'horizontal')
+    $scope.barco9 = new servicioBarco(9, 3, 'images/barco3H.png',
+      100, 30, 'horizontal')
+    $scope.barco10 = new servicioBarco(10, 4, 'images/barco4H.png',
+      120, 30, 'horizontal')
     $scope.barcos = [
       $scope.barco1
       $scope.barco2
@@ -354,7 +454,11 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDir
         arreglo = []
         for barco in $scope.arregloObjetosBarco
           if barco.idBarco is cont+1
-            obj = {fila: barco.fila, columna: barco.columna, idBarco: barco.idBarco}
+            obj = {
+              fila: barco.fila
+              columna: barco.columna
+              idBarco: barco.idBarco
+            }
             arreglo.push(obj)
         $scope.barcos[cont].setPiezas(arreglo)
         $scope.tablaJugador.setIdBarcoCelda(arreglo)
@@ -380,36 +484,60 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDir
       if $scope.juegoTerminado == false
         posicionAleatoria = null
         if($scope.piezasPosiblesAtaque.length <= 0)
-          indiceAleatorio = $scope.randomInt(0 , $scope.arregloPosiciones.length-1)
+          indiceAleatorio = $scope.randomInt(0 ,
+              $scope.arregloPosiciones.length-1)
           posicionAleatoria = $scope.arregloPosiciones[indiceAleatorio]
           $scope.arregloPosiciones.splice(indiceAleatorio, 1)
         else
           posicionAleatoria = $scope.piezasPosiblesAtaque.pop()
-        resultadoAtaque = $scope.tablaJugador.atacar(posicionAleatoria.fila, posicionAleatoria.columna)
+        resultadoAtaque = $scope.tablaJugador.atacar(posicionAleatoria.fila,
+            posicionAleatoria.columna)
         if(resultadoAtaque != 'ataque-erroneo')
           if(resultadoAtaque == 'ataque-repetido')
             $scope.atacarAlJugador()
           else
-            $scope.directivaAtacar(parseInt(posicionAleatoria.fila)+1, parseInt(posicionAleatoria.columna)+1, resultadoAtaque, "jugador")
+            $scope.directivaAtacar(parseInt(posicionAleatoria.fila)+1,
+                  parseInt(posicionAleatoria.columna)+1,
+                    resultadoAtaque, "jugador")
             if(resultadoAtaque == 'pieza-atacada')
               $scope.piezasPosiblesAtaque = [
-                {fila: posicionAleatoria.fila-1 , columna: posicionAleatoria.columna}
-                {fila: posicionAleatoria.fila+1 , columna: posicionAleatoria.columna}
-                {fila: posicionAleatoria.fila , columna: posicionAleatoria.columna-1}
-                {fila: posicionAleatoria.fila , columna: posicionAleatoria.columna+1}
+                {
+                  fila: posicionAleatoria.fila-1
+                  columna: posicionAleatoria.columna
+                }
+                {
+                  fila: posicionAleatoria.fila+1
+                  columna: posicionAleatoria.columna
+                }
+                {
+                  fila: posicionAleatoria.fila
+                  columna: posicionAleatoria.columna-1
+                }
+                {
+                  fila: posicionAleatoria.fila
+                  columna: posicionAleatoria.columna+1
+                }
               ]
-              while $scope.piezasPosiblesAtaque.length > 0 && resultadoAtaque == 'pieza-atacada'
-                posicionAleatoriaAtaque = $scope.randomInt(0 , $scope.piezasPosiblesAtaque.length - 1)
-                posicionAtaque = $scope.piezasPosiblesAtaque[posicionAleatoriaAtaque]
-                resultadoAtaque = $scope.tablaJugador.atacar(posicionAtaque.fila, posicionAtaque.columna)
+              while($scope.piezasPosiblesAtaque.length > 0 &&
+                  resultadoAtaque == 'pieza-atacada')
+                posicionAleatoriaAtaque = $scope.randomInt(0 ,
+                    $scope.piezasPosiblesAtaque.length - 1)
+                posicionAtaque = $scope
+                  .piezasPosiblesAtaque[posicionAleatoriaAtaque]
+                resultadoAtaque = $scope.tablaJugador.atacar(
+                  posicionAtaque.fila,posicionAtaque.columna)
                 if resultadoAtaque != 'ataque-erroneo'
-                  $scope.directivaAtacar(parseInt(posicionAtaque.fila)+1, parseInt(posicionAtaque.columna)+1, resultadoAtaque, "jugador")
+                  $scope.directivaAtacar(parseInt(posicionAtaque.fila)+1,
+                      parseInt(posicionAtaque.columna)+1,
+                        resultadoAtaque, "jugador")
                 $scope.piezasPosiblesAtaque.splice(posicionAleatoriaAtaque, 1)
             else
               if(resultadoAtaque == 'barco-hundido')
                 $scope.piezasPosiblesAtaque = []
                 $scope.atacarAlJugador()
-              $scope.directivaAtacar(parseInt(posicionAleatoria.fila)+1, parseInt(posicionAleatoria.columna)+1, resultadoAtaque, "jugador")
+              $scope.directivaAtacar(parseInt(posicionAleatoria.fila)+1,
+                  parseInt(posicionAleatoria.columna)+1,
+                    resultadoAtaque, "jugador")
         $scope.terminarJuego()
 
     #Creando la tabla del Enemigo
@@ -436,7 +564,8 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDir
             alert('Ataque repetido')
             atacandoRobot = false
           else
-            $scope.directivaAtacar(fila+1, columna+1, resultadoAtaque, 'enemigo')
+            $scope.directivaAtacar(fila+1, columna+1,
+              resultadoAtaque, 'enemigo')
             if(resultadoAtaque == 'pieza-atacada')
               atacandoRobot = false
             if(resultadoAtaque == 'barco-hundido')
@@ -450,7 +579,8 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDir
     # muestra un mensaje al jugador si gano o perdio
     #
     $scope.terminarJuego = ->
-      if($scope.tablaJugador.totalBarcosVivos() ==  0 || $scope.tablaEnemigo.totalBarcosVivos() ==  0 )
+      if($scope.tablaJugador.totalBarcosVivos() ==  0 ||
+      $scope.tablaEnemigo.totalBarcosVivos() ==  0 )
         $scope.juegoTerminado = true
         mensaje = ''
         if($scope.tablaJugador.totalBarcosVivos() ==  0)

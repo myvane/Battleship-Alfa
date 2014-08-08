@@ -173,7 +173,6 @@ define ['services','archivoServicioPieza'], (services) ->
             resultadoAtaque = 'barco-hundido'
           else
             resultadoAtaque = 'pieza-atacada'
-        console.log resultadoAtaque
         return resultadoAtaque
 
       # Devuelve el indice de la pieza que se encuentra en la fila y columna

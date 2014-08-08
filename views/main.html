@@ -1,23 +1,54 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
+<h1>BATTLESHIP</h1>
+<div ng-controller="controladorTabla">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel-titulo">
+                <h3>Jugador</h3>
+            </div><br>
+            <div class="div">
+                <table class="bordes">
+                    <tr ng-repeat="row in celdas">
+                        <td ng-repeat="column in celdas">
+                            <div id="div-{{ row }}-{{ column }}-jugador" class = "celda" ng-mousedown="cambiarIdDiv(row , column)" ondrop="drop(this,event)" ondragover="allowDrop(event)"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <div ng-repeat="barco in barcos">
+                    <img ng-click="cambiarOrientacion(barco)" ng-mousedown="obtenerTamanioBarco(barco)" id={{barco.identificador}} ng-src={{barco.url}} draggable="true" ondragstart="drag(this,event)" width="{{barco.ancho}}" height="{{barco.alto}}">
+                </div>
+                <button class="btn btn-danger btn-sm" ng-hide="valor === true" ng-click="guardarValores()">Jugar</button>
+            </div>
+        </div>
+        <div ng-hide="valorTablero === true" class="col-md-6">
+            <div class="panel-titulo">
+                <h3>Enemigo</h3>
+            </div>
+            <div class="panel-body">
+                <tablajuego id="enemigo"></tablajuego>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+                <form class="form-inline">
+                    <span class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">Fila</div>
+                            <input id="fila" class="form-control" type="number" min="1" max="10" value="1">
+                        </div>
+                    </span>
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+                    <span class="form-group">
+                         <div class="input-group">
+                             <div class="input-group-addon">Columna</div>
+                             <input id="columna" class="form-control" type="number" min="1" max="10" value="1">
+                         </div>
+                    </span>
+                    <span>
+                      <button type="button" class="btn btn-danger btn-sm" ng-click="atacarAlRobot()">
+                          <span class="glyphicon glyphicon-screenshot"></span> Atacar
+                      </button>
+                    </span>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

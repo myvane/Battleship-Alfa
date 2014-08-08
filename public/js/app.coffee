@@ -9,8 +9,6 @@ define [
  "directives"
  "services"
  "ngDragDrop"
- "dragAndDrop"
- "crearbarcos"
  "archivoControladorTabla"
  "ngResource"
 ], (angular) ->
@@ -28,9 +26,9 @@ define [
     "$routeProvider"
   , ($routeProvider) ->
       $routeProvider.when("/",
-        templateUrl: "panel_inicial.html"
+        templateUrl: "main.html"
       ).otherwise
-        redirectTo: "/panel_inicial.html"
+        redirectTo: "/main.html"
   ]
 
   battleShipsApp

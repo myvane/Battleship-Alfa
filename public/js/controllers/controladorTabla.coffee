@@ -332,65 +332,86 @@ define ['controllers', 'archivoServicioBarco','archivoServicioTabla','archivoDir
     $scope.filaColumnaFinal = {fila: 9, columna: 9}
     $scope.piezasPosiblesAtaque = []
 
-    $scope.atacarRobot = () ->
-      posicionAleatoria = null
-      if($scope.piezasPosiblesAtaque.length <= 0)
-        indiceAleatorio = $scope.randomInt(0 , $scope.arregloPosiciones.length-1)
-        posicionAleatoria = $scope.arregloPosiciones[indiceAleatorio]
-        $scope.arregloPosiciones.splice(indiceAleatorio, 1)
-      else
-        posicionAleatoria = $scope.piezasPosiblesAtaque.pop()
-      resultadoAtaque = $scope.tablaJugador.atacar(posicionAleatoria.fila, posicionAleatoria.columna)
-      console.log resultadoAtaque
-      if(resultadoAtaque != 'ataque-erroneo')
-          if(resultadoAtaque == "ataque-repetido")
-            $scope.atacarRobot()
-          else
-            $scope.directivaAtacar(parseInt(posicionAleatoria.fila)+1, parseInt(posicionAleatoria.columna)+1, resultadoAtaque, "jugador")
-            if(resultadoAtaque == "pieza-atacada")
-              $scope.piezasPosiblesAtaque = [
-                {fila: posicionAleatoria.fila-1 , columna: posicionAleatoria.columna},
-                {fila: posicionAleatoria.fila+1 , columna: posicionAleatoria.columna},
-                {fila: posicionAleatoria.fila , columna: posicionAleatoria.columna-1},
-                {fila: posicionAleatoria.fila , columna: posicionAleatoria.columna+1}
-              ]
-              while $scope.piezasPosiblesAtaque.length > 0 && resultadoAtaque == "pieza-atacada"
-                posicionAleatoriaAtaque = $scope.randomInt(0 , $scope.piezasPosiblesAtaque.length - 1)
-                posicionAtaque = $scope.piezasPosiblesAtaque[posicionAleatoriaAtaque]
-                resultadoAtaque = $scope.tablaJugador.atacar(posicionAtaque.fila, posicionAtaque.columna)
-                if resultadoAtaque != "ataque-erroneo"
-                  $scope.directivaAtacar(parseInt(posicionAtaque.fila)+1, parseInt(posicionAtaque.columna)+1, resultadoAtaque, "jugador")
-                $scope.piezasPosiblesAtaque.splice(posicionAleatoriaAtaque, 1)
+    $scope.atacarAlJugador = ->
+      if $scope.juegoTerminado == false
+        posicionAleatoria = null
+        if($scope.piezasPosiblesAtaque.length <= 0)
+          indiceAleatorio = $scope.randomInt(0 , $scope.arregloPosiciones.length-1)
+          posicionAleatoria = $scope.arregloPosiciones[indiceAleatorio]
+          $scope.arregloPosiciones.splice(indiceAleatorio, 1)
+        else
+          posicionAleatoria = $scope.piezasPosiblesAtaque.pop()
+        resultadoAtaque = $scope.tablaJugador.atacar(posicionAleatoria.fila, posicionAleatoria.columna)
+        console.log resultadoAtaque
+        if(resultadoAtaque != 'ataque-erroneo')
+            if(resultadoAtaque == "ataque-repetido")
+              $scope.atacarAlJugador()
             else
-              if(resultadoAtaque == "barco-hundido")
-                $scope.piezasPosiblesAtaque = []
-                $scope.atacarRobot()
               $scope.directivaAtacar(parseInt(posicionAleatoria.fila)+1, parseInt(posicionAleatoria.columna)+1, resultadoAtaque, "jugador")
+              if(resultadoAtaque == "pieza-atacada")
+                $scope.piezasPosiblesAtaque = [
+                  {fila: posicionAleatoria.fila-1 , columna: posicionAleatoria.columna},
+                  {fila: posicionAleatoria.fila+1 , columna: posicionAleatoria.columna},
+                  {fila: posicionAleatoria.fila , columna: posicionAleatoria.columna-1},
+                  {fila: posicionAleatoria.fila , columna: posicionAleatoria.columna+1}
+                ]
+                while $scope.piezasPosiblesAtaque.length > 0 && resultadoAtaque == "pieza-atacada"
+                  posicionAleatoriaAtaque = $scope.randomInt(0 , $scope.piezasPosiblesAtaque.length - 1)
+                  posicionAtaque = $scope.piezasPosiblesAtaque[posicionAleatoriaAtaque]
+                  resultadoAtaque = $scope.tablaJugador.atacar(posicionAtaque.fila, posicionAtaque.columna)
+                  if resultadoAtaque != "ataque-erroneo"
+                    $scope.directivaAtacar(parseInt(posicionAtaque.fila)+1, parseInt(posicionAtaque.columna)+1, resultadoAtaque, "jugador")
+                  $scope.piezasPosiblesAtaque.splice(posicionAleatoriaAtaque, 1)
+              else
+                if(resultadoAtaque == "barco-hundido")
+                  $scope.piezasPosiblesAtaque = []
+                  $scope.atacarAlJugador()
+                $scope.directivaAtacar(parseInt(posicionAleatoria.fila)+1, parseInt(posicionAleatoria.columna)+1, resultadoAtaque, "jugador")
+        $scope.terminarJuego()
 
 #funciones ataque jugador
     $scope.tablaEnemigo = new servicioTabla "enemigo", 10
     $scope.tablaEnemigo.construirTablaEnemigo()
+    $scope.juegoTerminado = false
+    $scope.jugadorGanador = "ninguno"
 
-    $scope.atacar = () ->
-      atacandoRobot = true
-      fila = $scope.directivaGetFilaAtaque()
-      columna = $scope.directivaGetColumnaAtaque()
-      fila = parseInt(fila) - 1
-      columna = parseInt(columna) - 1
-      resultadoAtaque = $scope.tablaEnemigo.atacar(fila, columna)
-      if(resultadoAtaque == "ataque-erroneo")
-        alert("Ataque erroneo")
-        atacandoRobot = false
-      else
-        if(resultadoAtaque == "ataque-repetido")
-          alert("Ataque repetido")
+    $scope.atacarAlRobot = ->
+      if $scope.juegoTerminado == false
+        atacandoRobot = true
+        fila = $scope.directivaGetFilaAtaque()
+        columna = $scope.directivaGetColumnaAtaque()
+        fila = parseInt(fila) - 1
+        columna = parseInt(columna) - 1
+        resultadoAtaque = $scope.tablaEnemigo.atacar(fila, columna)
+        if(resultadoAtaque == "ataque-erroneo")
+          alert("Ataque erroneo")
           atacandoRobot = false
         else
-          # resultadoAtaque = 'ataque-erroneo'
-          $scope.directivaAtacar(fila+1, columna+1, resultadoAtaque, "enemigo")
-          if(resultadoAtaque == "pieza-atacada")
+          if(resultadoAtaque == "ataque-repetido")
+            alert("Ataque repetido")
             atacandoRobot = false
-          if(resultadoAtaque == "barco-hundido")
-            atacandoRobot = false
-      if(atacandoRobot)
-        $scope.atacarRobot()
+          else
+            # resultadoAtaque = 'ataque-erroneo'
+            $scope.directivaAtacar(fila+1, columna+1, resultadoAtaque, "enemigo")
+            if(resultadoAtaque == "pieza-atacada")
+              atacandoRobot = false
+            if(resultadoAtaque == "barco-hundido")
+              atacandoRobot = false
+        $scope.terminarJuego()
+        if(atacandoRobot)
+          $scope.atacarAlJugador()
+
+    $scope.terminarJuego = ->
+      if($scope.tablaJugador.totalBarcosVivos() ==  0 || $scope.tablaEnemigo.totalBarcosVivos() ==  0 )
+        $scope.juegoTerminado = true
+        mensaje = ""
+        if($scope.tablaJugador.totalBarcosVivos() ==  0)
+          $scope.jugadorGanador = "enemigo"
+          mensaje = "PERDIO EL JUEGO"
+        else
+          $scope.jugadorGanador = "jugador"
+          mensaje = "GANASTE EL JUEGO"
+        alert "Juego Terminado ¡¡¡ #{mensaje} !!!"        
+
+
+
